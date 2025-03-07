@@ -9,7 +9,7 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
           <div className="flex items-center">
-            <a href="/" className="text-2xl font-bold text-indigo-600">
+          <a href="/" className="text-2xl font-bold text-transparent bg-clip-text" style="background: linear-gradient(to right, rgba(16, 193, 203, 1), rgba(124, 43, 231, 1));">
               DocuAid
             </a>
           </div>
