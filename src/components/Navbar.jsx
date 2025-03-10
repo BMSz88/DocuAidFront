@@ -25,9 +25,9 @@ const Navbar = () => {
                 <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-50">Benefits</a>
               </div>
             </div>
-            <a href="#" className="text-gray-600 hover:text-indigo-600">Enterprise</a>
-            <a href="#" className="text-gray-600 hover:text-indigo-600">Pricing</a>
-            <a href="#" className="text-gray-600 hover:text-indigo-600">Help Center</a>
+            <a href="/enterprise" className="text-gray-600 hover:text-indigo-600">Enterprise</a>
+            <a href="/pricing" className="text-gray-600 hover:text-indigo-600">Pricing</a>
+            <a href="/help-center" className="text-gray-600 hover:text-indigo-600">Help Center</a>
           </div>
 
           <div className="hidden md:flex items-center space-x-4">
