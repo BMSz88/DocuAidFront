@@ -50,13 +50,14 @@ const Navbar = () => {
       {isOpen && (
         <div className="md:hidden">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-            <a href="#" className="block px-3 py-2 text-gray-600 hover:bg-indigo-50 rounded-md">Products</a>
-            <a href="#" className="block px-3 py-2 text-gray-600 hover:bg-indigo-50 rounded-md">Solutions</a>
-            <a href="#" className="block px-3 py-2 text-gray-600 hover:bg-indigo-50 rounded-md">Resources</a>
-            <a href="#" className="block px-3 py-2 text-gray-600 hover:bg-indigo-50 rounded-md">Company</a>
+          <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-50">Features</a>
+          <a href="/enterprise" className="text-gray-600 hover:text-indigo-600">Enterprise</a>
+          <a href="/pricing" className="text-gray-600 hover:text-indigo-600">Pricing</a>
+          <a href="/help-center" className="text-gray-600 hover:text-indigo-600">Help Center</a>
             <div className="pt-4 flex flex-col space-y-2">
-              <button className="px-4 py-2 text-indigo-600 hover:text-indigo-700">Sign In</button>
-              <button className="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700">
+            <button className="px-4 py-2 text-indigo-600 hover:text-indigo-700">Sign Up</button>
+            <button className="px-4 py-2 text-indigo-600 hover:text-indigo-700">Log In</button>
+            <button   className="px-4 py-2 rounded-md text-black bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 hover:opacity-90">
                 Request Demo
               </button>
             </div>
