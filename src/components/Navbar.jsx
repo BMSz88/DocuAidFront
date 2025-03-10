@@ -51,9 +51,9 @@ const Navbar = () => {
         <div className="md:hidden">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
           <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-50">Features</a>
-          <a href="/enterprise" className="text-gray-600 hover:text-indigo-600">Enterprise</a>
-          <a href="/pricing" className="text-gray-600 hover:text-indigo-600">Pricing</a>
-          <a href="/help-center" className="text-gray-600 hover:text-indigo-600">Help Center</a>
+          <a href="/enterprise" className="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-50">Enterprise</a>
+          <a href="/pricing" className="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-50">Pricing</a>
+          <a href="/help-center" className="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-50">Help Center</a>
             <div className="pt-4 flex flex-col space-y-2">
             <button className="px-4 py-2 text-indigo-600 hover:text-indigo-700">Sign Up</button>
             <button className="px-4 py-2 text-indigo-600 hover:text-indigo-700">Log In</button>
