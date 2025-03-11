@@ -21,7 +21,7 @@ const teamMembers = [
     role: "Team member",
     location: "Sri Lanka",
     experience: "2+ years",
-    image: "/pictures/Navod.jpg", 
+    image: "/pictures/navod.jpg", 
     bio: "Computer Science student with a solid foundation in industrial applications, backend, and frontend development.",
     social: {
       github: "https://github.com/navodchamil",
@@ -34,7 +34,7 @@ const teamMembers = [
     role: "Team member",
     location: "Sri Lanka",
     experience: "2+ years",
-    image: "/pictures/Yuwan.jpg",
+    image: "/pictures/yuwan.jpg",
     bio: "Full-stack developer with a passion for creating scalable web applications and mentoring junior developers.",
     social: {
       github: "https://github.com/yuwankavi",
@@ -47,7 +47,7 @@ const teamMembers = [
     role: "Team member",
     location: "Sri Lanka",
     experience: "2+ years",
-    image: "/pictures/dasun.png",
+    image: "/pictures/dasun.jpg",
     bio: "Passionate about understanding user behavior and creating intuitive digital experiences through research-driven design.",
     social: {
       github: "https://github.com/DasunBatheegama",
