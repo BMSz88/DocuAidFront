@@ -34,7 +34,7 @@ const Enterprise = () => {
           <option value="100+">100+</option>
         </select>
         
-        <button className="w-full bg-black text-Black  bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 py-3 mt-6 rounded-md hover:opacity-90">
+        <button className="w-full bg-black text-white  bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 py-3 mt-6 rounded-md hover:opacity-90">
           Submit
         </button>
       </div>
@@ -154,9 +154,9 @@ const Pricing = () => {
             </span>
 
             <button
-              className={`w-full mt-5 py-2 rounded-lg text-white font-semibold text-lg bg-${plan.highlightColor} hover:bg-opacity-80 transition`}
+              className={`w-full mt-5 py-2 rounded-lg text-balck font-semibold text-lg bg-${plan.highlightColor} hover:bg-opacity-80 transition`}
             >
-              {plan.id === 'archive-alchemist' ? 'Transform Your Archive' : 'Activate Elite AI Access'}
+              {plan.id === 'archive-alchemist' ? 'Transform to Pro plan' : 'Activate Ultimate plan'}
             </button>
 
             <div className="mt-6 border-t pt-4">
@@ -199,7 +199,7 @@ const HelpCenter = () => {
         <label className="block text-gray-700 font-semibold mt-4" htmlFor="message">HOW CAN WE HELP?</label>
         <textarea id="message" className="w-full p-2 mt-1 border rounded-md" rows="4" placeholder="Tell us how we can help! Whether you're looking for answers, need to troubleshoot an issue, or just want to share your thoughts on how we can improve, we're all ears."></textarea>
         
-        <button className="w-full mt-6 p-3 text-Black bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 py-3 mt-6 rounded-md hover:opacity-90">Submit</button>
+        <button className="w-full mt-6 p-3 text-white bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 py-3 mt-6 rounded-md hover:opacity-90">Submit</button>
       </form>
     </div>
   );

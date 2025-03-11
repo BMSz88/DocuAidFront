@@ -6,6 +6,7 @@ import Features from './components/Features';
 import CTA from './components/CTA';
 import Footer from './components/Footer';
 import { Enterprise, Pricing, HelpCenter } from './Pages';
+import About from './About';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
             <Route path="/enterprise" element={<Enterprise />} />
             <Route path="/pricing" element={<Pricing />} />
             <Route path="/help-center" element={<HelpCenter />} />
+            <Route path="/about" element={<About />} /> {}
           </Routes>
         </main>
         <Footer />
