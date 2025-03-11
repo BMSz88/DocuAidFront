@@ -33,7 +33,7 @@ const Navbar = () => {
           <div className="hidden md:flex items-center space-x-4">
             <button className="px-4 py-2 text-indigo-600 hover:text-indigo-700">Sign Up</button>
             <button className="px-4 py-2 text-indigo-600 hover:text-indigo-700">Log In</button>
-            <button   className="px-4 py-2 rounded-md text-black bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 hover:opacity-90">
+            <button   className="px-4 py-2 rounded-md text-white bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 hover:opacity-90">
               Add to Chrome
             </button>
           </div>

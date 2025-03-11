@@ -13,7 +13,7 @@ No more searching — just ask!</span>
         The AI-powered chatbot that understands website documentation, extracts precise information, and delivers instant answers while you browse.
         </p>
         <div className="mt-10 flex justify-center gap-4">
-          <button className="px-8 py-3 rounded-md text-black font-medium bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 hover:opacity-90">
+          <button className="px-8 py-3 rounded-md text-white font-medium bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 hover:opacity-90">
             Try DocuAid Now
           </button>
           <button className="px-8 py-3 text-indigo-600 border border-indigo-600 rounded-md hover:bg-indigo-50 font-medium">
