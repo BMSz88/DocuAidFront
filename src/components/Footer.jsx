@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
@@ -8,29 +9,29 @@ const Footer = () => {
           <div>
             <h3 className="text-sm font-semibold text-gray-400 tracking-wider uppercase">Product</h3>
             <ul className="mt-4 space-y-4">
-              <li><a href="#" className="text-base text-gray-300 hover:text-white">Features</a></li>
-              <li><a href="/pricing" className="text-base text-gray-300 hover:text-white">Pricing</a></li>
+              <li><Link to="/feature" className="text-base text-gray-300 hover:text-white">Features</Link></li>
+              <li><Link to="/pricing" className="text-base text-gray-300 hover:text-white">Pricing</Link></li>
             </ul>
           </div>
           <div>
             <h3 className="text-sm font-semibold text-gray-400 tracking-wider uppercase">Company</h3>
             <ul className="mt-4 space-y-4">
-              <li><a href="/About" className="text-base text-gray-300 hover:text-white">About</a></li>
-              <li><a href="#" className="text-base text-gray-300 hover:text-white">Careers</a></li>
+              <li><Link to="/about" className="text-base text-gray-300 hover:text-white">About</Link></li>
+              <li><Link to="/careers" className="text-base text-gray-300 hover:text-white">Careers</Link></li>
             </ul>
           </div>
           <div>
             <h3 className="text-sm font-semibold text-gray-400 tracking-wider uppercase">Resources</h3>
             <ul className="mt-4 space-y-4">
-              <li><a href="#" className="text-base text-gray-300 hover:text-white">Documentation</a></li>
-              <li><a href="/help-center" className="text-base text-gray-300 hover:text-white">Help Center</a></li>
+              <li><Link to="/documentation" className="text-base text-gray-300 hover:text-white">Documentation</Link></li>
+              <li><Link to="/help-center" className="text-base text-gray-300 hover:text-white">Help Center</Link></li>
             </ul>
           </div>
           <div>
             <h3 className="text-sm font-semibold text-gray-400 tracking-wider uppercase">Legal</h3>
             <ul className="mt-4 space-y-4">
-              <li><a href="#" className="text-base text-gray-300 hover:text-white">Privacy</a></li>
-              <li><a href="#" className="text-base text-gray-300 hover:text-white">Terms</a></li>
+              <li><Link to="/privacy" className="text-base text-gray-300 hover:text-white">Privacy</Link></li>
+              <li><Link to="/terms" className="text-base text-gray-300 hover:text-white">Terms</Link></li>
             </ul>
           </div>
         </div>
