@@ -161,7 +161,7 @@ const CareersPage = () => {
                   variant="primary"
                   to="/about"
                 >
-                  Learn about our values
+                  Meet Our Team
                 </Button>
               </div>
             </div>
