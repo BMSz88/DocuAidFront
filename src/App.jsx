@@ -17,6 +17,9 @@ import About from './About.jsx';
 //import PrivacyPage from './PrivacyPage.jsx';
 //import TermsPage from './TermsPage.jsx';
 import ScrollToTop from './components/ScrollToTop.jsx';
+import Login from './components/Login.jsx';
+import Signup from './components/Signup.jsx';
+import Dashboard from './components/Dashboard.jsx';
 
 function App() {
   return (
@@ -37,7 +40,9 @@ function App() {
             <Route path="/pricing" element={<Pricing />} />
             <Route path="/help-center" element={<HelpCenter />} />
             <Route path="/about" element={<About />} />
-            
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/dashboard" element={<Dashboard />} />
             {/* {}
             <Route path="/feature" element={<FeaturesPage />} />
             <Route path="/benefits" element={<BenefitsPage />} />
