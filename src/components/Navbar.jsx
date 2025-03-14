@@ -115,8 +115,12 @@ const Navbar = () => {
 
           {}
           <div className="hidden md:flex items-center space-x-4">
-            <Button variant="ghost" size="sm">Sign Up</Button>
-            <Button variant="ghost" size="sm">Log In</Button>
+            <Link to="/signup">
+              <Button variant="ghost" size="sm">Sign Up</Button>
+            </Link>
+            <Link to="/login">
+              <Button variant="ghost" size="sm">Log In</Button>
+            </Link>
             <Button variant="primary" size="sm">Add to Chrome</Button>
           </div>
 
@@ -184,8 +188,12 @@ const Navbar = () => {
                 </React.Fragment>
               ))}
               <div className="pt-4 flex flex-col space-y-2 px-4">
-                <Button variant="ghost" size="sm" className="justify-start">Sign Up</Button>
-                <Button variant="ghost" size="sm" className="justify-start">Log In</Button>
+                <Link to="/signup" className="w-full">
+                  <Button variant="ghost" size="sm" className="justify-start w-full">Sign Up</Button>
+                </Link>
+                <Link to="/login" className="w-full">
+                  <Button variant="ghost" size="sm" className="justify-start w-full">Log In</Button>
+                </Link>
                 <Button variant="primary" size="sm">Add to Chrome</Button>
               </div>
             </div>
