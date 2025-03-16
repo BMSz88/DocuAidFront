@@ -9,7 +9,8 @@
     "prebuild": "mkdir -p build-temp && cp -f src/components/login.jsx build-temp/Login.jsx && cp -f src/components/signup.jsx build-temp/Signup.jsx && cp -f build-temp/Login.jsx src/components/ && cp -f build-temp/Signup.jsx src/components/ && rm -rf build-temp",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "vercel-install": "mkdir -p src/components && cp -f src/components/login.jsx src/components/Login.jsx && cp -f src/components/signup.jsx src/components/Signup.jsx && touch src/CareersPage.jsx src/BenefitsPage.jsx src/IntegrationsPage.jsx src/DocumentationPage.jsx src/PrivacyPage.jsx src/TermsPage.jsx"
   },
   "dependencies": {
     "axios": "^1.8.3",

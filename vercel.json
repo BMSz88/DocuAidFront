@@ -6,7 +6,7 @@
     }
   ],
   "buildCommand": "npm run build",
-  "installCommand": "npm install && mkdir -p src/components && cp -f src/components/login.jsx src/components/Login.jsx && cp -f src/components/signup.jsx src/components/Signup.jsx && touch src/CareersPage.jsx && touch src/BenefitsPage.jsx && touch src/IntegrationsPage.jsx && touch src/DocumentationPage.jsx && touch src/PrivacyPage.jsx && touch src/TermsPage.jsx",
+  "installCommand": "npm install && npm run vercel-install",
   "outputDirectory": "dist",
   "framework": "vite",
   "routes": [
