@@ -10,6 +10,9 @@ function Login() {
     const navigate = useNavigate();
     const location = useLocation();
 
+    // Get API URL from environment variables
+    const apiUrl = import.meta.env.VITE_API_URL;
+
     // Check if user is already logged in or coming from Google auth
     useEffect(() => {
         // Check for URL params first (might be returning from Google auth)
@@ -57,7 +60,7 @@ function Login() {
 
         try {
             console.log("Sending login request...");
-            const response = await axios.post("http://localhost:3001/login", {
+            const response = await axios.post(`${apiUrl}/api/login`, {
                 email,
                 password
             }, {
@@ -100,7 +103,7 @@ function Login() {
         localStorage.removeItem("docuaid-user");
 
         // Redirect to Google auth endpoint
-        window.location.href = "http://localhost:3001/auth/google";
+        window.location.href = `${apiUrl}/auth/google`;
     };
 
     return (

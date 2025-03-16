@@ -11,6 +11,9 @@ function Signup() {
     const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
 
+    // Get API URL from environment variables
+    const apiUrl = import.meta.env.VITE_API_URL;
+
     // Check if user is already logged in
     useEffect(() => {
         const token = localStorage.getItem("token");
@@ -45,7 +48,7 @@ function Signup() {
 
         try {
             console.log("Sending registration request...");
-            const response = await axios.post("http://localhost:3001/register", {
+            const response = await axios.post(`${apiUrl}/api/register`, {
                 name,
                 email,
                 password
@@ -72,7 +75,7 @@ function Signup() {
                 setError(err.response.data.message || "Registration failed. Please try again.");
             } else if (err.request) {
                 console.error("No response received:", err.request);
-                setError("No response from server. Please check if the server is running at http://localhost:3001. Make sure to start the server with 'node server.js' from the server directory.");
+                setError(`No response from server. Please check if the server is running at ${apiUrl}.`);
             } else {
                 console.error("Error message:", err.message);
                 setError("An error occurred during registration. Please try again.");
@@ -96,7 +99,7 @@ function Signup() {
         }
 
         // Redirect to Google auth endpoint
-        window.location.href = "http://localhost:3001/auth/google";
+        window.location.href = `${apiUrl}/auth/google`;
     };
 
     return (
