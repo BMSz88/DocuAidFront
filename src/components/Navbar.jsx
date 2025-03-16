@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Menu, X, ChevronDown } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Button from './Button'; 
@@ -7,14 +7,6 @@ import Button from './Button';
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(null);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    // Check if user is logged in
-    const userInfo = localStorage.getItem('docuaid-user');
-    setIsLoggedIn(!!userInfo);
-  }, []);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -22,13 +14,6 @@ const Navbar = () => {
 
   const toggleDropdown = (name) => {
     setActiveDropdown(activeDropdown === name ? null : name);
-  };
-
-  const handleLogout = () => {
-    localStorage.removeItem('docuaid-user');
-    localStorage.removeItem('docuaid-chat-history');
-    setIsLoggedIn(false);
-    navigate('/');
   };
 
   const menuVariants = {
@@ -72,7 +57,7 @@ const Navbar = () => {
     <nav className="fixed w-full bg-white z-50 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
-          {/* Logo */}
+          {}
           <div className="flex items-center">
             <Link 
               to="/" 
@@ -82,7 +67,7 @@ const Navbar = () => {
             </Link>
           </div>
           
-          {/* Desktop Navigation */}
+          {}
           <div className="hidden md:flex items-center space-x-8">
             {navItems.map((item) => 
               item.dropdown ? (
@@ -128,23 +113,18 @@ const Navbar = () => {
             )}
           </div>
 
-          {/* Auth Buttons */}
+          {}
           <div className="hidden md:flex items-center space-x-4">
-            {isLoggedIn ? (
-              <>
-                <Button variant="ghost" size="sm" to="/dashboard">Dashboard</Button>
-                <Button variant="ghost" size="sm" onClick={handleLogout}>Sign Out</Button>
-              </>
-            ) : (
-              <>
-                <Button variant="ghost" size="sm" to="/login">Sign Up</Button>
-                <Button variant="ghost" size="sm" to="/login">Log In</Button>
-                <Button variant="primary" size="sm" to="/login">Add to Chrome</Button>
-              </>
-            )}
+            <Link to="/signup">
+              <Button variant="ghost" size="sm">Sign Up</Button>
+            </Link>
+            <Link to="/login">
+              <Button variant="ghost" size="sm">Log In</Button>
+            </Link>
+            <Button variant="primary" size="sm">Add to Chrome</Button>
           </div>
 
-          {/* Mobile Menu Button */}
+          {}
           <div className="md:hidden">
             <button onClick={toggleMenu} className="text-gray-600" aria-label="Toggle menu">
               {isOpen ? <X size={24} /> : <Menu size={24} />}
@@ -153,7 +133,7 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {}
       <AnimatePresence>
         {isOpen && (
           <motion.div 
@@ -207,21 +187,14 @@ const Navbar = () => {
                   )}
                 </React.Fragment>
               ))}
-              
-              {/* Mobile Authentication Links */}
               <div className="pt-4 flex flex-col space-y-2 px-4">
-                {isLoggedIn ? (
-                  <>
-                    <Button variant="ghost" size="sm" className="justify-start" to="/dashboard">Dashboard</Button>
-                    <Button variant="ghost" size="sm" className="justify-start" onClick={handleLogout}>Sign Out</Button>
-                  </>
-                ) : (
-                  <>
-                    <Button variant="ghost" size="sm" className="justify-start" to="/login">Sign Up</Button>
-                    <Button variant="ghost" size="sm" className="justify-start" to="/login">Log In</Button>
-                    <Button variant="primary" size="sm" to="/login">Add to Chrome</Button>
-                  </>
-                )}
+                <Link to="/signup" className="w-full">
+                  <Button variant="ghost" size="sm" className="justify-start w-full">Sign Up</Button>
+                </Link>
+                <Link to="/login" className="w-full">
+                  <Button variant="ghost" size="sm" className="justify-start w-full">Log In</Button>
+                </Link>
+                <Button variant="primary" size="sm">Add to Chrome</Button>
               </div>
             </div>
           </motion.div>

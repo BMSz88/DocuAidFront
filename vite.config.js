@@ -3,14 +3,14 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig({
   plugins: [react()],
-  optimizeDeps: {
-    exclude: ["lucide-react"],
-  },
   server: {
-    port: 3000, 
+    port: 5173, // Changed from 3000 to 5173 to avoid conflicts
+    proxy: {
+      '/api': {
+        target: 'http://localhost:3001',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ''),
+      },
+    },
   },
-  build: {
-    outDir: "dist",
-  },
-  base: "/",
 });

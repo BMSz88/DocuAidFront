@@ -1,4 +1,3 @@
-
 # DocuAid
 
 Introduction
@@ -36,12 +35,36 @@ cd docuaid-frontend
 ```bash
 npm install
 ```
-4. Start the development server:
+
+4. Set up environment variables:
 
 ```bash
+# Navigate to the server directory
+cd server
+
+# Copy the example environment file
+cp .env.example .env
+
+# Edit the .env file with your actual credentials
+nano .env
+```
+
+5. Start the backend server:
+
+```bash
+# From the server directory
 npm start
 ```
-5. Open your browser and go to http://localhost:3000 to see the app in action.
+
+6. In a new terminal, start the frontend development server:
+
+```bash
+# From the project root directory
+npm run dev
+```
+
+7. Open your browser and go to the URL shown in the terminal (typically http://localhost:5173) to see the app in action.
+
 For the live version, visit:
 
 ```bash
