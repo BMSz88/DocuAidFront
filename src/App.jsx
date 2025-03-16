@@ -9,13 +9,13 @@ import CTA from './components/CTA.jsx';
 import Footer from './components/Footer.jsx';
 import { Enterprise, Pricing, HelpCenter } from './Pages.jsx';
 import About from './About.jsx';
-//import FeaturesPage from './FeaturesPage.jsx';
-//import BenefitsPage from './BenefitsPage.jsx';
-//import IntegrationsPage from './IntegrationsPage.jsx';
-//import CareersPage from './CareersPage.jsx';
-//import DocumentationPage from './DocumentationPage.jsx';
-//import PrivacyPage from './PrivacyPage.jsx';
-//import TermsPage from './TermsPage.jsx';
+import FeaturesPage from './FeaturesPage.jsx';
+import BenefitsPage from './BenefitsPage.jsx';
+import IntegrationsPage from './IntegrationsPage.jsx';
+import CareersPage from './CareersPage.jsx';
+import DocumentationPage from './DocumentationPage.jsx';
+import PrivacyPage from './PrivacyPage.jsx';
+import TermsPage from './TermsPage.jsx';
 import ScrollToTop from './components/ScrollToTop.jsx';
 
 function App() {
@@ -38,16 +38,16 @@ function App() {
             <Route path="/help-center" element={<HelpCenter />} />
             <Route path="/about" element={<About />} />
             
-            {/* {}
+            {}
             <Route path="/feature" element={<FeaturesPage />} />
             <Route path="/benefits" element={<BenefitsPage />} />
-            <Route path="/how-it-works" element={<IntegrationsPage />} /> */}
+            <Route path="/how-it-works" element={<IntegrationsPage />} />
             
-            {/* {}
+            {}
             <Route path="/careers" element={<CareersPage />} />
             <Route path="/documentation" element={<DocumentationPage />} />
             <Route path="/privacy" element={<PrivacyPage />} />
-            <Route path="/terms" element={<TermsPage />} /> */}
+            <Route path="/terms" element={<TermsPage />} />
           </Routes>
         </main>
         <Footer />
