@@ -145,8 +145,8 @@ const TermsPage = () => {
               If you have any questions about these Terms, please contact us at:
             </p>
             <p>
-              Email: legal@docuaid.com<br />
-              Address: 123 Tech Street, Suite 100, San Francisco, CA 94105
+              Email: docuaid2025@gmail.com<br />
+              
             </p>
           </div>
 
