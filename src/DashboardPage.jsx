@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import DocuAidDashboard from './components/DocuAidDashboard';
+import DocuAidDashboard from './components/DocuAidDashboard.jsx';
 import { motion } from 'framer-motion';
 
 const DashboardPage = () => {

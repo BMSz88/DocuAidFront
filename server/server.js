@@ -36,12 +36,13 @@ if (!process.env.GOOGLE_CLIENT_ID || !process.env.GOOGLE_CLIENT_SECRET) {
 const JWT_SECRET = process.env.JWT_SECRET || require('crypto').randomBytes(32).toString('hex');
 const SESSION_SECRET = process.env.SESSION_SECRET || JWT_SECRET;
 const GOOGLE_CALLBACK_URL = process.env.GOOGLE_CALLBACK_URL || "http://localhost:3001/auth/google/callback";
+const FRONTEND_URL = process.env.FRONTEND_URL || "http://localhost:5173";
 
 // CORS Configuration - Allow all localhost ports with more flexibility
 app.use(cors({
   origin: function (origin, callback) {
-    // Allow any origin that is localhost or undefined (like Postman requests)
-    if (!origin || origin.startsWith('http://localhost:')) {
+    // Allow any origin that is localhost, the FRONTEND_URL, or undefined (like Postman requests)
+    if (!origin || origin.startsWith('http://localhost:') || origin === process.env.FRONTEND_URL) {
       callback(null, true);
     } else {
       callback(new Error('Not allowed by CORS'));
@@ -258,19 +259,24 @@ app.get('/auth/google/callback',
     };
 
     // Get the origin from the request or use a default
-    let origin = req.headers.origin;
+    let origin = process.env.FRONTEND_URL;
 
-    if (!origin && req.headers.referer) {
-      // Extract origin from referer if available
-      const refererUrl = new URL(req.headers.referer);
-      origin = `${refererUrl.protocol}//${refererUrl.host}`;
-    }
-
-    // Fallback to a default if needed
     if (!origin) {
-      // Try to use some common localhost ports
-      const possiblePorts = [5173, 5174, 5175, 5176, 5177, 5178, 5179, 5180, 5181];
-      origin = `http://localhost:${possiblePorts[0]}`;
+      // If FRONTEND_URL is not set, try to get it from the request
+      origin = req.headers.origin;
+
+      if (!origin && req.headers.referer) {
+        // Extract origin from referer if available
+        const refererUrl = new URL(req.headers.referer);
+        origin = `${refererUrl.protocol}//${refererUrl.host}`;
+      }
+
+      // Fallback to a default if needed
+      if (!origin) {
+        // Try to use some common localhost ports
+        const possiblePorts = [5173, 5174, 5175, 5176, 5177, 5178, 5179, 5180, 5181];
+        origin = `http://localhost:${possiblePorts[0]}`;
+      }
     }
 
     // Construct the redirect URL

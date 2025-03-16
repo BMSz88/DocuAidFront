@@ -9,8 +9,8 @@ import CTA from './components/CTA.jsx';
 import Footer from './components/Footer.jsx';
 import { Enterprise, Pricing, HelpCenter } from './Pages.jsx';
 import About from './About.jsx';
-import Login from './components/Login.jsx';
-import Signup from './components/Signup.jsx';
+import Login from './components/login.jsx';
+import Signup from './components/signup.jsx';
 import DashboardPage from './DashboardPage.jsx';
 import FeaturesPage from './FeaturesPage.jsx';
 import BenefitsPage from './BenefitsPage.jsx';
@@ -45,12 +45,12 @@ const AppLayout = () => {
           <Route path="/signup" element={<Signup />} />
           <Route path="/dashboard" element={<DashboardPage />} />
 
-          {}
+          { }
           <Route path="/feature" element={<FeaturesPage />} />
           <Route path="/benefits" element={<BenefitsPage />} />
           <Route path="/how-it-works" element={<IntegrationsPage />} />
 
-          {}
+          { }
           <Route path="/careers" element={<CareersPage />} />
           <Route path="/documentation" element={<DocumentationPage />} />
           <Route path="/privacy" element={<PrivacyPage />} />
