@@ -11,7 +11,31 @@ require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 3002;
-const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key'; // Change this in production
+
+// Check for required environment variables
+if (!process.env.JWT_SECRET) {
+  console.error('WARNING: JWT_SECRET is not set in environment variables. Using a random value for this session only.');
+  console.error('This is insecure for production. Please set JWT_SECRET in your .env file.');
+}
+
+if (!process.env.SESSION_SECRET) {
+  console.error('WARNING: SESSION_SECRET is not set in environment variables. Using JWT_SECRET as fallback.');
+  console.error('This is insecure for production. Please set SESSION_SECRET in your .env file.');
+}
+
+if (!process.env.MONGO_URI) {
+  console.error('ERROR: MONGO_URI is not set in environment variables.');
+  console.error('MongoDB connection will fail. Please set MONGO_URI in your .env file.');
+}
+
+if (!process.env.GOOGLE_CLIENT_ID || !process.env.GOOGLE_CLIENT_SECRET) {
+  console.error('WARNING: Google OAuth credentials are not set in environment variables.');
+  console.error('Google authentication will not work properly. Please set GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET in your .env file.');
+}
+
+const JWT_SECRET = process.env.JWT_SECRET || require('crypto').randomBytes(32).toString('hex');
+const SESSION_SECRET = process.env.SESSION_SECRET || JWT_SECRET;
+const GOOGLE_CALLBACK_URL = process.env.GOOGLE_CALLBACK_URL || "http://localhost:3001/auth/google/callback";
 
 // CORS Configuration - Allow all localhost ports with more flexibility
 app.use(cors({
@@ -32,7 +56,7 @@ app.use(bodyParser.json());
 
 // Add session middleware
 app.use(session({
-  secret: process.env.SESSION_SECRET || JWT_SECRET,
+  secret: SESSION_SECRET,
   resave: false,
   saveUninitialized: false,
   cookie: { secure: false } // Set to true in production with HTTPS
@@ -52,42 +76,45 @@ passport.deserializeUser((obj, done) => {
 });
 
 // Configure Google Strategy using existing env variables
-passport.use(new GoogleStrategy({
-  clientID: process.env.GOOGLE_CLIENT_ID,
-  clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-  callbackURL: process.env.GOOGLE_CALLBACK_URL || "http://localhost:3001/auth/google/callback"
-},
-  async function (accessToken, refreshToken, profile, done) {
-    try {
-      // Find or create user in database
-      console.log('Google profile:', profile.displayName, profile.emails[0].value);
+if (process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET) {
+  passport.use(new GoogleStrategy({
+    clientID: process.env.GOOGLE_CLIENT_ID,
+    clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+    callbackURL: GOOGLE_CALLBACK_URL
+  },
+    async function (accessToken, refreshToken, profile, done) {
+      try {
+        // Find or create user in database
+        console.log('Google profile:', profile.displayName, profile.emails[0].value);
 
-      let user = await User.findOne({ email: profile.emails[0].value });
+        let user = await User.findOne({ email: profile.emails[0].value });
 
-      if (!user) {
-        // Create a new user with Google profile data
-        const randomPassword = Math.random().toString(36).slice(-8);
-        const hashedPassword = await bcrypt.hash(randomPassword, 10);
+        if (!user) {
+          // Create a new user with Google profile data
+          const randomPassword = Math.random().toString(36).slice(-8);
+          const hashedPassword = await bcrypt.hash(randomPassword, 10);
 
-        user = new User({
-          name: profile.displayName,
-          email: profile.emails[0].value,
-          password: hashedPassword
-        });
+          user = new User({
+            name: profile.displayName,
+            email: profile.emails[0].value,
+            password: hashedPassword
+          });
 
-        await user.save();
-        console.log('New Google user created:', user.email);
-      } else {
-        console.log('Existing user found with Google email:', user.email);
+          await user.save();
+          console.log('New Google user created:', user.email);
+        } else {
+          console.log('Existing user found with Google email:', user.email);
+        }
+
+        return done(null, user);
+      } catch (error) {
+        console.error('Google authentication error:', error);
+        return done(error, null);
       }
-
-      return done(null, user);
-    } catch (error) {
-      console.error('Google authentication error:', error);
-      return done(error, null);
-    }
-  }
-));
+    }));
+} else {
+  console.error('Google Strategy not configured due to missing credentials');
+}
 
 // Simple ping endpoint for connectivity testing
 app.get('/ping', (req, res) => {
@@ -95,9 +122,13 @@ app.get('/ping', (req, res) => {
 });
 
 // Connect to MongoDB
-mongoose.connect(process.env.MONGO_URI)
-  .then(() => console.log('Connected to MongoDB'))
-  .catch(err => console.error('MongoDB connection error:', err));
+if (process.env.MONGO_URI) {
+  mongoose.connect(process.env.MONGO_URI)
+    .then(() => console.log('Connected to MongoDB'))
+    .catch(err => console.error('MongoDB connection error:', err));
+} else {
+  console.error('MongoDB connection skipped due to missing MONGO_URI');
+}
 
 // User Schema
 const userSchema = new mongoose.Schema({
