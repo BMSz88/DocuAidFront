@@ -69,7 +69,7 @@
     }
   ],
   "env": {
-    "VITE_API_URL": "https://docuaid-backend-production.up.railway.app",
-    "VITE_GOOGLE_CALLBACK_URL": "https://docuaid-backend-production.up.railway.app/auth/google/callback"
+    "VITE_API_URL": "https://docuaidfront.railway.app",
+    "VITE_GOOGLE_CALLBACK_URL": "https://docuaidfront.railway.app/auth/google/callback"
   }
 }
