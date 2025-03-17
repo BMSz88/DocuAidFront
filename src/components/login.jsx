@@ -80,19 +80,13 @@ function Login() {
             navigate("/dashboard");
         } catch (err) {
             console.error("Login error:", err);
-
-            // Detailed error handling
-            if (err.response) {
-                console.error("Error data:", err.response.data);
-                setError(err.response.data.message || "Login failed. Please check your credentials.");
-            } else if (err.request) {
-                console.error("No response received:", err.request);
-                setError("No response from server. Please check if the server is running.");
+            if (err.code === 'ECONNABORTED' || !err.response) {
+                setError("Connection to server failed. Please try again later or contact support.");
+            } else if (err.response && err.response.data && err.response.data.message) {
+                setError(err.response.data.message);
             } else {
-                console.error("Error message:", err.message);
                 setError("An error occurred during login. Please try again.");
             }
-        } finally {
             setIsLoading(false);
         }
     };

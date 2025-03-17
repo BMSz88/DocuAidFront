@@ -68,19 +68,13 @@ function Signup() {
             navigate("/login");
         } catch (err) {
             console.error("Registration error:", err);
-
-            // Detailed error handling
-            if (err.response) {
-                console.error("Error data:", err.response.data);
-                setError(err.response.data.message || "Registration failed. Please try again.");
-            } else if (err.request) {
-                console.error("No response received:", err.request);
-                setError(`No response from server. Please check if the server is running at ${apiUrl}.`);
+            if (err.code === 'ECONNABORTED' || !err.response) {
+                setError("Connection to server failed. Please try again later or contact support.");
+            } else if (err.response && err.response.data && err.response.data.message) {
+                setError(err.response.data.message);
             } else {
-                console.error("Error message:", err.message);
                 setError("An error occurred during registration. Please try again.");
             }
-        } finally {
             setIsLoading(false);
         }
     };
