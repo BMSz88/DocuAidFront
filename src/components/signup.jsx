@@ -48,7 +48,7 @@ function Signup() {
 
         try {
             console.log("Sending registration request...");
-            const response = await axios.post(`${apiUrl}/api/register`, {
+            const response = await axios.post(`${apiUrl}/register`, {
                 name,
                 email,
                 password

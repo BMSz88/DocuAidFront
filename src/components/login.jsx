@@ -60,7 +60,7 @@ function Login() {
 
         try {
             console.log("Sending login request...");
-            const response = await axios.post(`${apiUrl}/api/login`, {
+            const response = await axios.post(`${apiUrl}/login`, {
                 email,
                 password
             }, {
