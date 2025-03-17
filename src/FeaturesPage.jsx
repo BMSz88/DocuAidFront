@@ -100,7 +100,7 @@ const FeaturesPage = () => {
   ];
 
   return (
-    <div className="pt-24 bg-white">
+    <div className="page-container">
       <div className="bg-gradient-to-r from-gray-50 to-gray-100 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">

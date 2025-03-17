@@ -163,7 +163,7 @@ const IntegrationsPage = () => {
   };
 
   return (
-    <div className="pt-24 bg-white">
+    <div className="page-container">
       <div className="bg-gradient-to-r from-gray-50 to-gray-100 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
@@ -233,10 +233,10 @@ const IntegrationsPage = () => {
                     {item.icon}
                   </div>
                   <span className={`text-sm font-medium rounded-full px-3 py-1 ${item.status === 'Available Now'
-                      ? 'bg-green-100 text-green-800'
-                      : item.status === 'Coming Soon'
-                        ? 'bg-blue-100 text-blue-800'
-                        : 'bg-yellow-100 text-yellow-800'
+                    ? 'bg-green-100 text-green-800'
+                    : item.status === 'Coming Soon'
+                      ? 'bg-blue-100 text-blue-800'
+                      : 'bg-yellow-100 text-yellow-800'
                     }`}>
                     {item.status}
                   </span>

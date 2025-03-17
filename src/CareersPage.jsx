@@ -30,42 +30,42 @@ const CareersPage = () => {
   const jobOpenings = [
     {
       title: "Senior Full Stack Developer",
-      location: "Remote (US/EU)",
+      location: "Remote",
       type: "Full-time",
       department: "Engineering",
       description: "Join our core team to build and scale our AI-powered documentation assistant. You'll work on both frontend and backend systems, ensuring a seamless user experience.",
     },
     {
       title: "Machine Learning Engineer",
-      location: "Remote (Worldwide)",
+      location: "Remote",
       type: "Full-time",
       department: "AI Research",
       description: "Help improve our NLP models that power DocuAid's context-aware documentation understanding. You'll work on training, fine-tuning, and deploying ML models.",
     },
     {
       title: "Product Designer",
-      location: "Remote (US/EU)",
+      location: "Remote",
       type: "Full-time",
       department: "Design",
       description: "Create intuitive interfaces and experiences for developers using DocuAid. You'll be responsible for user research, wireframing, and design implementation.",
     },
     {
       title: "DevOps Engineer",
-      location: "Remote (US/EU)",
+      location: "Remote",
       type: "Full-time",
       department: "Engineering",
       description: "Build and maintain our cloud infrastructure, CI/CD pipelines, and deployment systems. Help us scale reliably as we grow our user base.",
     },
     {
       title: "Technical Content Writer",
-      location: "Remote (Worldwide)",
+      location: "Remote",
       type: "Part-time",
       department: "Marketing",
       description: "Create engaging, informative content about documentation best practices, AI in developer tools, and tutorials for DocuAid.",
     },
     {
       title: "Growth Marketing Specialist",
-      location: "Remote (US/EU)",
+      location: "Remote",
       type: "Full-time",
       department: "Marketing",
       description: "Drive user acquisition and retention through data-driven marketing strategies. You'll work on campaigns, analytics, and customer journey optimization.",
@@ -106,7 +106,7 @@ const CareersPage = () => {
   ];
 
   return (
-    <div className="pt-24 bg-white">
+    <div className="page-container">
       {/* Hero Section */}
       <div className="bg-gradient-to-r from-gray-50 to-gray-100 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

@@ -90,8 +90,7 @@ const BenefitsPage = () => {
   ];
 
   return (
-    <div className="pt-24 bg-white">
-      { }
+    <div className="page-container">
       <div className="bg-gradient-to-r from-gray-50 to-gray-100 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
@@ -111,7 +110,6 @@ const BenefitsPage = () => {
         </div>
       </div>
 
-      { }
       <div className="py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -153,7 +151,6 @@ const BenefitsPage = () => {
         </div>
       </div>
 
-      { }
       <div className="bg-gray-50 py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -215,7 +212,6 @@ const BenefitsPage = () => {
         </div>
       </div>
 
-      { }
       <div className="py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="lg:grid lg:grid-cols-2 lg:gap-12 items-center">
@@ -296,7 +292,6 @@ const BenefitsPage = () => {
         </div>
       </div>
 
-      { }
       <div className="bg-gradient-to-r from-accent-500 via-primary-500 to-secondary-500 py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold text-white">Ready to transform your team's productivity?</h2>
