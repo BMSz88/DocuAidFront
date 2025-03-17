@@ -70,8 +70,7 @@ function Login() {
                 withCredentials: true,
                 headers: {
                     'Content-Type': 'application/json',
-                    'Accept': 'application/json',
-                    'Access-Control-Allow-Origin': '*'
+                    'Accept': 'application/json'
                 },
                 // Add timeout to prevent long waiting
                 timeout: 10000

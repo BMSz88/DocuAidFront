@@ -58,8 +58,7 @@ function Signup() {
             }, {
                 headers: {
                     'Content-Type': 'application/json',
-                    'Accept': 'application/json',
-                    'Access-Control-Allow-Origin': '*'
+                    'Accept': 'application/json'
                 },
                 withCredentials: true,
                 // Add timeout to prevent long waiting
