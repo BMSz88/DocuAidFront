@@ -48,15 +48,22 @@ function Signup() {
 
         try {
             console.log("Sending registration request...");
+            // Add more detailed logging
+            console.log(`API URL: ${apiUrl}/register`);
+
             const response = await axios.post(`${apiUrl}/register`, {
                 name,
                 email,
                 password
             }, {
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                    'Access-Control-Allow-Origin': '*'
                 },
-                withCredentials: true
+                withCredentials: true,
+                // Add timeout to prevent long waiting
+                timeout: 10000
             });
 
             console.log("Registration response:", response.data);
@@ -68,8 +75,17 @@ function Signup() {
             navigate("/login");
         } catch (err) {
             console.error("Registration error:", err);
+            // More detailed error logging
+            if (err.response) {
+                console.error("Error response data:", err.response.data);
+                console.error("Error response status:", err.response.status);
+                console.error("Error response headers:", err.response.headers);
+            }
+
             if (err.code === 'ECONNABORTED' || !err.response) {
                 setError("Connection to server failed. Please try again later or contact support.");
+            } else if (err.response && err.response.status === 500) {
+                setError("The server encountered an error. Please try again later or contact support.");
             } else if (err.response && err.response.data && err.response.data.message) {
                 setError(err.response.data.message);
             } else {

@@ -60,14 +60,21 @@ function Login() {
 
         try {
             console.log("Sending login request...");
+            // Add more detailed logging
+            console.log(`API URL: ${apiUrl}/login`);
+
             const response = await axios.post(`${apiUrl}/login`, {
                 email,
                 password
             }, {
                 withCredentials: true,
                 headers: {
-                    'Content-Type': 'application/json'
-                }
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                    'Access-Control-Allow-Origin': '*'
+                },
+                // Add timeout to prevent long waiting
+                timeout: 10000
             });
 
             console.log("Login response:", response.data);
@@ -80,8 +87,17 @@ function Login() {
             navigate("/dashboard");
         } catch (err) {
             console.error("Login error:", err);
+            // More detailed error logging
+            if (err.response) {
+                console.error("Error response data:", err.response.data);
+                console.error("Error response status:", err.response.status);
+                console.error("Error response headers:", err.response.headers);
+            }
+
             if (err.code === 'ECONNABORTED' || !err.response) {
                 setError("Connection to server failed. Please try again later or contact support.");
+            } else if (err.response && err.response.status === 500) {
+                setError("The server encountered an error. Please try again later or contact support.");
             } else if (err.response && err.response.data && err.response.data.message) {
                 setError(err.response.data.message);
             } else {
