@@ -13,6 +13,6 @@ html {
 /* Add consistent page spacing */
 @layer components {
   .page-container {
-    @apply pt-24 bg-white border-t-4 border-black;
+    @apply pt-16 bg-white border-t-2 border-black;
   }
 }
