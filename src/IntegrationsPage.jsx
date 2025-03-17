@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { 
-  Github, 
-  Gitlab, 
-  FileText, 
-  Chrome, 
-  Globe, 
-  Code, 
-  Server, 
+import {
+  Github,
+  Gitlab,
+  FileText,
+  Chrome,
+  Globe,
+  Code,
+  Server,
   Slack,
   Trello,
   MessageSquare,
@@ -79,7 +79,7 @@ const IntegrationsPage = () => {
       {
         name: 'Firefox Add-on',
         description: 'Access DocuAid\'s powerful documentation assistance while browsing with Firefox.',
-        icon: <Globe className="w-12 h-12 text-primary-500" />, 
+        icon: <Globe className="w-12 h-12 text-primary-500" />,
         status: 'Coming Soon',
         link: '#'
       },
@@ -163,8 +163,7 @@ const IntegrationsPage = () => {
   };
 
   return (
-    <div className="pt-20 bg-white">
-      {}
+    <div className="pt-24 bg-white">
       <div className="bg-gradient-to-r from-gray-50 to-gray-100 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
@@ -184,7 +183,6 @@ const IntegrationsPage = () => {
         </div>
       </div>
 
-      {}
       <div className="py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -194,7 +192,6 @@ const IntegrationsPage = () => {
             </p>
           </div>
 
-          {}
           <div className="mb-12">
             <div className="border-b border-gray-200">
               <nav className="flex -mb-px space-x-8 overflow-x-auto">
@@ -204,8 +201,8 @@ const IntegrationsPage = () => {
                     onClick={() => setActiveTab(category.id)}
                     className={`
                       py-4 px-1 flex items-center whitespace-nowrap font-medium text-sm border-b-2 transition-colors
-                      ${activeTab === category.id 
-                        ? 'border-primary-500 text-primary-600' 
+                      ${activeTab === category.id
+                        ? 'border-primary-500 text-primary-600'
                         : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'}
                     `}
                   >
@@ -217,8 +214,7 @@ const IntegrationsPage = () => {
             </div>
           </div>
 
-          {}
-          <motion.div 
+          <motion.div
             key={activeTab}
             initial="hidden"
             animate="visible"
@@ -236,19 +232,18 @@ const IntegrationsPage = () => {
                   <div className="bg-gray-50 p-3 rounded-lg">
                     {item.icon}
                   </div>
-                  <span className={`text-sm font-medium rounded-full px-3 py-1 ${
-                    item.status === 'Available Now' 
-                      ? 'bg-green-100 text-green-800' 
+                  <span className={`text-sm font-medium rounded-full px-3 py-1 ${item.status === 'Available Now'
+                      ? 'bg-green-100 text-green-800'
                       : item.status === 'Coming Soon'
                         ? 'bg-blue-100 text-blue-800'
                         : 'bg-yellow-100 text-yellow-800'
-                  }`}>
+                    }`}>
                     {item.status}
                   </span>
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-3">{item.name}</h3>
                 <p className="text-gray-600 mb-6">{item.description}</p>
-                <a 
+                <a
                   href={item.link}
                   className="text-primary-600 font-medium hover:text-primary-700 inline-flex items-center"
                 >
@@ -263,7 +258,6 @@ const IntegrationsPage = () => {
         </div>
       </div>
 
-      {}
       <div className="bg-gray-50 py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -274,9 +268,8 @@ const IntegrationsPage = () => {
           </div>
 
           <div className="relative">
-            {}
             <div className="hidden md:block absolute top-1/2 left-0 right-0 h-0.5 bg-gradient-to-r from-accent-500 via-primary-500 to-secondary-500 transform -translate-y-1/2"></div>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
               {[
                 {
@@ -309,8 +302,7 @@ const IntegrationsPage = () => {
                     <h3 className="text-xl font-bold text-gray-900 mb-3">{step.title}</h3>
                     <p className="text-gray-600">{step.description}</p>
                   </div>
-                  
-                  {}
+
                   <div className="hidden md:block absolute top-1/2 left-1/2 w-6 h-6 rounded-full bg-white border-2 border-primary-500 transform -translate-x-1/2 -translate-y-1/2"></div>
                 </div>
               ))}
@@ -319,7 +311,6 @@ const IntegrationsPage = () => {
         </div>
       </div>
 
-      {}
       <div className="py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="lg:grid lg:grid-cols-2 lg:gap-12 items-center">
@@ -328,7 +319,7 @@ const IntegrationsPage = () => {
               <p className="mt-4 text-lg text-gray-500">
                 Need a custom integration? DocuAid offers a robust API that allows you to build your own integrations and extend our capabilities to fit your unique workflow.
               </p>
-              
+
               <div className="mt-8 space-y-4">
                 {[
                   "RESTful API with comprehensive documentation",
@@ -345,12 +336,12 @@ const IntegrationsPage = () => {
                   </div>
                 ))}
               </div>
-              
+
               <div className="mt-10">
                 <Button variant="primary">Explore API Docs</Button>
               </div>
             </div>
-            
+
             <div className="mt-10 lg:mt-0">
               <div className="bg-gray-800 rounded-xl p-6 shadow-xl overflow-hidden">
                 <div className="flex items-center mb-4">
@@ -363,7 +354,7 @@ const IntegrationsPage = () => {
                 </div>
                 <pre className="text-gray-300 font-mono text-sm overflow-x-auto">
                   <code>
-{`// Example API request
+                    {`// Example API request
 fetch('https://api.docuaid.com/v1/query', {
   method: 'POST',
   headers: {
@@ -387,7 +378,6 @@ fetch('https://api.docuaid.com/v1/query', {
         </div>
       </div>
 
-      {}
       <div className="bg-gradient-to-r from-accent-500 via-primary-500 to-secondary-500 py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold text-white">Ready to integrate DocuAid with your workflow?</h2>
@@ -395,16 +385,16 @@ fetch('https://api.docuaid.com/v1/query', {
             Get started with our integrations today and transform your documentation experience.
           </p>
           <div className="mt-10">
-            <Button 
-              variant="secondary" 
-              size="lg" 
+            <Button
+              variant="secondary"
+              size="lg"
               className="bg-white hover:bg-gray-50 text-primary-600"
             >
               Get Started
             </Button>
-            <Button 
-              variant="ghost" 
-              size="lg" 
+            <Button
+              variant="ghost"
+              size="lg"
               className="ml-4 text-white border-white hover:bg-white/10"
             >
               Request Custom Integration

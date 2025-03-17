@@ -3,9 +3,16 @@
 @tailwind utilities;
 
 html {
-    scroll-behavior: smooth;
+  scroll-behavior: smooth;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Add consistent page spacing */
+@layer components {
+  .page-container {
+    @apply pt-24 bg-white;
   }
-  
-  html {
-    scroll-behavior: smooth;
-  }
+}

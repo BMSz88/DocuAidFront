@@ -1,11 +1,11 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { 
-  Clock, 
-  TrendingUp, 
-  Users, 
-  BookOpen, 
-  CheckCircle, 
+import {
+  Clock,
+  TrendingUp,
+  Users,
+  BookOpen,
+  CheckCircle,
   Database,
   Briefcase,
   Lightbulb
@@ -90,8 +90,8 @@ const BenefitsPage = () => {
   ];
 
   return (
-    <div className="pt-20 bg-white">
-      {}
+    <div className="pt-24 bg-white">
+      { }
       <div className="bg-gradient-to-r from-gray-50 to-gray-100 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
@@ -111,7 +111,7 @@ const BenefitsPage = () => {
         </div>
       </div>
 
-      {}
+      { }
       <div className="py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -121,7 +121,7 @@ const BenefitsPage = () => {
             </p>
           </div>
 
-          <motion.div 
+          <motion.div
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
@@ -153,7 +153,7 @@ const BenefitsPage = () => {
         </div>
       </div>
 
-      {}
+      { }
       <div className="bg-gray-50 py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -215,7 +215,7 @@ const BenefitsPage = () => {
         </div>
       </div>
 
-      {}
+      { }
       <div className="py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="lg:grid lg:grid-cols-2 lg:gap-12 items-center">
@@ -224,7 +224,7 @@ const BenefitsPage = () => {
               <p className="mt-4 text-lg text-gray-500">
                 DocuAid doesn't just help individual developers—it transforms entire organizations by improving efficiency, knowledge sharing, and collaborative problem-solving.
               </p>
-              
+
               <div className="mt-8 space-y-4">
                 {businessBenefits.map((benefit, index) => (
                   <div key={index} className="flex items-start">
@@ -238,19 +238,19 @@ const BenefitsPage = () => {
                   </div>
                 ))}
               </div>
-              
+
               <div className="mt-10">
                 <Button variant="primary" a href="/help-center" >Book a Demo</Button>
               </div>
             </div>
-            
+
             <div className="mt-10 lg:mt-0">
               <div className="bg-white p-8 rounded-xl shadow-xl">
                 <div className="flex justify-between items-center mb-6">
                   <h3 className="text-xl font-bold text-gray-900">ROI Calculator</h3>
                   <span className="text-sm text-gray-500">Estimated annual savings</span>
                 </div>
-                
+
                 <div className="space-y-6">
                   <div>
                     <div className="flex justify-between mb-2">
@@ -261,7 +261,7 @@ const BenefitsPage = () => {
                       <div className="bg-primary-500 h-2 rounded-full w-3/4"></div>
                     </div>
                   </div>
-                  
+
                   <div>
                     <div className="flex justify-between mb-2">
                       <span className="text-gray-700">Time spent on documentation (hours/week)</span>
@@ -271,7 +271,7 @@ const BenefitsPage = () => {
                       <div className="bg-primary-500 h-2 rounded-full w-2/3"></div>
                     </div>
                   </div>
-                  
+
                   <div>
                     <div className="flex justify-between mb-2">
                       <span className="text-gray-700">DocuAid efficiency improvement</span>
@@ -281,7 +281,7 @@ const BenefitsPage = () => {
                       <div className="bg-primary-500 h-2 rounded-full w-3/5"></div>
                     </div>
                   </div>
-                  
+
                   <div className="pt-4 border-t border-gray-200">
                     <div className="flex justify-between mb-2">
                       <span className="text-gray-900 font-bold">Annual savings per developer</span>
@@ -296,7 +296,7 @@ const BenefitsPage = () => {
         </div>
       </div>
 
-      {}
+      { }
       <div className="bg-gradient-to-r from-accent-500 via-primary-500 to-secondary-500 py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold text-white">Ready to transform your team's productivity?</h2>
@@ -304,16 +304,16 @@ const BenefitsPage = () => {
             Join thousands of developers already benefiting from DocuAid.
           </p>
           <div className="mt-10">
-            <Button 
-              variant="secondary" 
-              size="lg" 
+            <Button
+              variant="secondary"
+              size="lg"
               className="bg-white hover:bg-gray-50 text-primary-600"
             >
               Start Free Trial
             </Button>
-            <Button 
-              variant="ghost" 
-              size="lg" 
+            <Button
+              variant="ghost"
+              size="lg"
               className="ml-4 text-white border-white hover:bg-white/10"
             >
               Contact Sales

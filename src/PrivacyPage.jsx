@@ -4,7 +4,7 @@ import Button from './components/Button.jsx';
 
 const PrivacyPage = () => {
   return (
-    <div className="pt-20 bg-white">
+    <div className="pt-24 bg-white">
       {/* Header */}
       <div className="bg-gradient-to-r from-gray-50 to-gray-100 py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -24,12 +24,12 @@ const PrivacyPage = () => {
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="prose prose-lg prose-primary">
             <p>
-              At DocuAid, we take your privacy seriously. This Privacy Policy explains how we collect, use, 
-              disclose, and safeguard your information when you use our website, browser extension, 
+              At DocuAid, we take your privacy seriously. This Privacy Policy explains how we collect, use,
+              disclose, and safeguard your information when you use our website, browser extension,
               or any of our services.
             </p>
             <p>
-              Please read this privacy policy carefully. If you do not agree with the terms of this privacy policy, 
+              Please read this privacy policy carefully. If you do not agree with the terms of this privacy policy,
               please do not access our services.
             </p>
 
@@ -39,19 +39,19 @@ const PrivacyPage = () => {
             </p>
             <ul>
               <li>
-                <strong>Personal Information</strong>: When you create an account, we collect your name, email address, 
+                <strong>Personal Information</strong>: When you create an account, we collect your name, email address,
                 and other contact information you provide.
               </li>
               <li>
-                <strong>Usage Data</strong>: We collect information about how you interact with our services, including 
+                <strong>Usage Data</strong>: We collect information about how you interact with our services, including
                 the features you use, the time spent, and the pages you visit.
               </li>
               <li>
-                <strong>Documentation Content</strong>: To provide AI-powered assistance, we process the 
+                <strong>Documentation Content</strong>: To provide AI-powered assistance, we process the
                 content of documentation pages you interact with while using our browser extension.
               </li>
               <li>
-                <strong>Device Information</strong>: We collect information about your device, including 
+                <strong>Device Information</strong>: We collect information about your device, including
                 your browser type and operating system.
               </li>
             </ul>
@@ -70,7 +70,7 @@ const PrivacyPage = () => {
 
             <h2>Data Security</h2>
             <p>
-              We have implemented appropriate technical and organizational security measures designed to 
+              We have implemented appropriate technical and organizational security measures designed to
               protect the security of any personal information we process. These measures include:
             </p>
             <ul>
@@ -80,29 +80,29 @@ const PrivacyPage = () => {
               <li>Regular monitoring for potential vulnerabilities</li>
             </ul>
             <p>
-              However, please also understand that no security system is impenetrable. We cannot guarantee 
-              the absolute security of our databases, nor can we guarantee that information you supply 
+              However, please also understand that no security system is impenetrable. We cannot guarantee
+              the absolute security of our databases, nor can we guarantee that information you supply
               will not be intercepted while being transmitted to us over the Internet.
             </p>
 
             <h2>Third-Party Services</h2>
             <p>
-              Our services may contain links to other websites or services that are not owned or controlled 
+              Our services may contain links to other websites or services that are not owned or controlled
               by DocuAid. We are not responsible for the privacy practices of any third-party websites or services.
             </p>
 
             <h2>Data Retention</h2>
             <p>
-              We will retain your personal information only for as long as is necessary for the purposes 
-              set out in this Privacy Policy. We will retain and use your information to the extent necessary 
+              We will retain your personal information only for as long as is necessary for the purposes
+              set out in this Privacy Policy. We will retain and use your information to the extent necessary
               to comply with our legal obligations, resolve disputes, and enforce our policies.
             </p>
 
             <h2>Children's Privacy</h2>
             <p>
-              Our service is not intended for use by children under the age of 13. We do not knowingly 
-              collect personally identifiable information from children under 13. If we discover that a 
-              child under 13 has provided us with personal information, we will delete such information 
+              Our service is not intended for use by children under the age of 13. We do not knowingly
+              collect personally identifiable information from children under 13. If we discover that a
+              child under 13 has provided us with personal information, we will delete such information
               from our servers immediately.
             </p>
 
@@ -123,11 +123,11 @@ const PrivacyPage = () => {
 
             <h2>Changes to This Privacy Policy</h2>
             <p>
-              We may update our Privacy Policy from time to time. We will notify you of any changes by 
+              We may update our Privacy Policy from time to time. We will notify you of any changes by
               posting the new Privacy Policy on this page and updating the "Last updated" date at the top.
             </p>
             <p>
-              You are advised to review this Privacy Policy periodically for any changes. Changes to this 
+              You are advised to review this Privacy Policy periodically for any changes. Changes to this
               Privacy Policy are effective when they are posted on this page.
             </p>
 
@@ -137,10 +137,10 @@ const PrivacyPage = () => {
             </p>
             <p>
               Email: docuaid2025@gmail.com<br />
-              
+
             </p>
           </div>
-          
+
           <div className="mt-12 border-t pt-8">
             <div className="flex flex-col md:flex-row justify-between items-center">
               <p className="text-gray-600 mb-4 md:mb-0">
@@ -185,8 +185,8 @@ const PrivacyPage = () => {
                 description: "You maintain control over your data with easy-to-use privacy settings and export options."
               }
             ].map((feature, index) => (
-              <div 
-                key={index} 
+              <div
+                key={index}
                 className="bg-white p-6 rounded-lg shadow-sm border border-gray-200"
               >
                 <div className="mb-4">
@@ -215,8 +215,8 @@ const PrivacyPage = () => {
                 </p>
                 <div className="mt-8">
                   <div className="inline-flex rounded-md shadow">
-                    <Button 
-                      variant="secondary" 
+                    <Button
+                      variant="secondary"
                       className="bg-white hover:bg-gray-50 text-primary-600"
                     >
                       Get Started

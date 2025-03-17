@@ -1,15 +1,15 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { 
-  Bot, 
-  Zap, 
-  BarChart3, 
-  Users, 
-  Search, 
-  FileText, 
-  Download, 
-  Lock, 
-  Star, 
+import {
+  Bot,
+  Zap,
+  BarChart3,
+  Users,
+  Search,
+  FileText,
+  Download,
+  Lock,
+  Star,
   Globe
 } from 'lucide-react';
 import Button from './components/Button.jsx';
@@ -100,8 +100,7 @@ const FeaturesPage = () => {
   ];
 
   return (
-    <div className="pt-20 bg-white">
-      {}
+    <div className="pt-24 bg-white">
       <div className="bg-gradient-to-r from-gray-50 to-gray-100 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
@@ -121,7 +120,6 @@ const FeaturesPage = () => {
         </div>
       </div>
 
-      {}
       <div className="py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -131,7 +129,7 @@ const FeaturesPage = () => {
             </p>
           </div>
 
-          <motion.div 
+          <motion.div
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
@@ -156,7 +154,6 @@ const FeaturesPage = () => {
         </div>
       </div>
 
-      {}
       <div className="bg-gray-50 py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="lg:grid lg:grid-cols-2 lg:gap-12 items-center">
@@ -192,9 +189,9 @@ const FeaturesPage = () => {
               <div className="relative">
                 <div className="absolute -inset-0.5 bg-gradient-to-r from-accent-500 via-primary-500 to-secondary-500 rounded-lg blur opacity-30"></div>
                 <div className="relative bg-white rounded-lg p-1 shadow-xl">
-                  <img 
-                    src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80" 
-                    alt="AI Document Analysis" 
+                  <img
+                    src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80"
+                    alt="AI Document Analysis"
                     className="rounded-lg shadow-lg"
                   />
                 </div>
@@ -204,7 +201,6 @@ const FeaturesPage = () => {
         </div>
       </div>
 
-      {}
       <div className="py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -216,8 +212,8 @@ const FeaturesPage = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {advancedFeatures.map((feature, index) => (
-              <div 
-                key={index} 
+              <div
+                key={index}
                 className="flex p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300"
               >
                 <div className="flex-shrink-0 mr-4">
@@ -235,7 +231,6 @@ const FeaturesPage = () => {
         </div>
       </div>
 
-      {}
       <div className="bg-gradient-to-r from-accent-500 via-primary-500 to-secondary-500 py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold text-white">Ready to experience DocuAid?</h2>
@@ -243,16 +238,16 @@ const FeaturesPage = () => {
             Start using DocuAid today and transform the way you work with documentation.
           </p>
           <div className="mt-10">
-            <Button 
-              variant="secondary" 
-              size="lg" 
+            <Button
+              variant="secondary"
+              size="lg"
               className="bg-white hover:bg-gray-50 text-primary-600"
             >
               Get Started Free
             </Button>
-            <Button 
-              variant="ghost" 
-              size="lg" 
+            <Button
+              variant="ghost"
+              size="lg"
               className="ml-4 text-white border-white hover:bg-white/10"
             >
               Schedule Demo
