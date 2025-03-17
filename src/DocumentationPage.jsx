@@ -119,8 +119,8 @@ const DocumentationPage = () => {
 
   return (
     <div className="page-container">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="bg-gradient-to-r from-gray-50 to-gray-100 py-20">
+      <div className="bg-gradient-to-r from-gray-50 to-gray-100 py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl md:text-6xl">
               <span className="block">DocuAid Documentation</span>
@@ -146,211 +146,209 @@ const DocumentationPage = () => {
             </div>
           </div>
         </div>
+      </div>
 
-        <div className="py-16">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="lg:grid lg:grid-cols-12 lg:gap-8">
-              <div className="lg:col-span-3">
-                <nav className="sticky top-24 space-y-1">
-                  {categories.map((category) => (
-                    <button
-                      key={category.id}
-                      onClick={() => setActiveCategory(category.id)}
-                      className={`
-                        w-full flex items-center px-3 py-2 text-sm font-medium rounded-md transition-colors
-                        ${activeCategory === category.id
-                          ? 'bg-primary-50 text-primary-600'
-                          : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'}
-                      `}
-                    >
-                      <span className="mr-3">{category.icon}</span>
-                      {category.name}
-                    </button>
-                  ))}
-
-                  <div className="pt-6 mt-6 border-t border-gray-200">
-                    <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider">Resources</h3>
-                    <div className="mt-3 space-y-1">
-                      {[
-                        { name: 'Release Notes', icon: <FileText className="w-5 h-5" /> },
-                        { name: 'Community Forum', icon: <Users className="w-5 h-5" /> },
-                        { name: 'Support', icon: <LifeBuoy className="w-5 h-5" /> }
-                      ].map((item) => (
-                        <a
-                          key={item.name}
-                          href="#"
-                          className="flex items-center px-3 py-2 text-sm font-medium text-gray-600 rounded-md hover:bg-gray-50 hover:text-gray-900"
-                        >
-                          <span className="mr-3">{item.icon}</span>
-                          {item.name}
-                        </a>
-                      ))}
-                    </div>
-                  </div>
-                </nav>
-              </div>
-
-              <div className="mt-12 lg:mt-0 lg:col-span-9">
-                <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
-                  <div className="px-6 py-5 border-b border-gray-200">
-                    <h2 className="text-2xl font-bold text-gray-900 flex items-center">
-                      {categories.find(c => c.id === activeCategory).icon}
-                      <span className="ml-2">{categories.find(c => c.id === activeCategory).name}</span>
-                    </h2>
-                  </div>
-
-                  <div className="px-6 py-5">
-                    <motion.div
-                      key={activeCategory}
-                      initial="hidden"
-                      animate="visible"
-                      variants={containerVariants}
-                      className="divide-y divide-gray-200"
-                    >
-                      {documentSections[activeCategory].map((section, index) => (
-                        <motion.div
-                          key={section.slug}
-                          variants={itemVariants}
-                          className="py-5"
-                        >
-                          <a href={`#${section.slug}`} className="block group">
-                            <div className="flex items-center justify-between">
-                              <h3 className="text-lg font-medium text-gray-900 group-hover:text-primary-600">
-                                {section.title}
-                              </h3>
-                              <ChevronRight className="w-5 h-5 text-gray-400 group-hover:text-primary-600" />
-                            </div>
-                            <p className="mt-2 text-gray-500">
-                              {activeCategory === 'quickstart' && section.slug === 'installation' &&
-                                'Install DocuAid in your browser or set up our API client in your application.'}
-                              {activeCategory === 'quickstart' && section.slug === 'account-setup' &&
-                                'Create an account and configure your initial settings to get started.'}
-                            </p>
-                          </a>
-                        </motion.div>
-                      ))}
-                    </motion.div>
-                  </div>
-                </div>
-
-                <div className="mt-8 bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
-                  <div className="px-6 py-5 border-b border-gray-200">
-                    <h2 className="text-2xl font-bold text-gray-900">Installation Guide</h2>
-                  </div>
-
-                  <div className="px-6 py-5 prose prose-primary max-w-none">
-                    <h3 id="browser-extension">Browser Extension Installation</h3>
-                    <p>
-                      DocuAid is available as a browser extension for Chrome, Firefox, and Edge. Follow these steps to install:
-                    </p>
-
-                    <ol>
-                      <li>
-                        <strong>Chrome:</strong> Visit the <a href="#" className="text-primary-600 hover:text-primary-800">Chrome Web Store</a> and click "Add to Chrome"
-                      </li>
-                      <li>
-                        <strong>Firefox:</strong> Visit the <a href="#" className="text-primary-600 hover:text-primary-800">Firefox Add-ons Store</a> and click "Add to Firefox"
-                      </li>
-                      <li>
-                        <strong>Edge:</strong> Visit the <a href="#" className="text-primary-600 hover:text-primary-800">Edge Add-ons Store</a> and click "Get"
-                      </li>
-                    </ol>
-
-                    <p>
-                      After installation, you'll see the DocuAid icon in your browser toolbar. Click it to open the DocuAid sidebar.
-                    </p>
-
-                    <h3 id="api-client">API Client Installation</h3>
-                    <p>
-                      For programmatic access to DocuAid, you can use our official client libraries:
-                    </p>
-
-                    <div className="bg-gray-50 rounded-md p-4 my-4">
-                      <p className="text-sm font-mono text-gray-700">
-                        # Python
-                        <br />
-                        pip install docuaid-client
-                        <br /><br />
-                        # JavaScript
-                        <br />
-                        npm install @docuaid/client
-                      </p>
-                    </div>
-
-                    <p>
-                      For more detailed installation options and troubleshooting, see the <a href="#" className="text-primary-600 hover:text-primary-800">complete installation guide</a>.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="bg-gray-50 py-16">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-extrabold text-gray-900">Frequently Asked Questions</h2>
-              <p className="mt-4 text-lg text-gray-500">
-                Get quick answers to common questions about DocuAid.
-              </p>
-            </div>
-
-            <div className="max-w-3xl mx-auto">
-              {faqs.map((faq, index) => (
-                <div
-                  key={index}
-                  className="bg-white shadow-sm border border-gray-200 rounded-lg mb-4 overflow-hidden"
+      <div className="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="lg:grid lg:grid-cols-12 lg:gap-8">
+          <div className="lg:col-span-3">
+            <nav className="sticky top-24 space-y-1">
+              {categories.map((category) => (
+                <button
+                  key={category.id}
+                  onClick={() => setActiveCategory(category.id)}
+                  className={`
+                    w-full flex items-center px-3 py-2 text-sm font-medium rounded-md transition-colors
+                    ${activeCategory === category.id
+                      ? 'bg-primary-50 text-primary-600'
+                      : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'}
+                  `}
                 >
-                  <button
-                    onClick={() => toggleFAQ(index)}
-                    className="w-full px-6 py-4 text-left flex justify-between items-center focus:outline-none"
-                  >
-                    <span className="text-lg font-medium text-gray-900">{faq.question}</span>
-                    <ChevronDown
-                      className={`w-5 h-5 text-gray-500 transform transition-transform duration-200 ${expandedFAQs.includes(index) ? 'rotate-180' : ''
-                        }`}
-                    />
-                  </button>
-
-                  {expandedFAQs.includes(index) && (
-                    <div className="px-6 pb-4">
-                      <p className="text-gray-600">{faq.answer}</p>
-                    </div>
-                  )}
-                </div>
+                  <span className="mr-3">{category.icon}</span>
+                  {category.name}
+                </button>
               ))}
+
+              <div className="pt-6 mt-6 border-t border-gray-200">
+                <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider">Resources</h3>
+                <div className="mt-3 space-y-1">
+                  {[
+                    { name: 'Release Notes', icon: <FileText className="w-5 h-5" /> },
+                    { name: 'Community Forum', icon: <Users className="w-5 h-5" /> },
+                    { name: 'Support', icon: <LifeBuoy className="w-5 h-5" /> }
+                  ].map((item) => (
+                    <a
+                      key={item.name}
+                      href="#"
+                      className="flex items-center px-3 py-2 text-sm font-medium text-gray-600 rounded-md hover:bg-gray-50 hover:text-gray-900"
+                    >
+                      <span className="mr-3">{item.icon}</span>
+                      {item.name}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </nav>
+          </div>
+
+          <div className="mt-12 lg:mt-0 lg:col-span-9">
+            <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+              <div className="px-6 py-5 border-b border-gray-200">
+                <h2 className="text-2xl font-bold text-gray-900 flex items-center">
+                  {categories.find(c => c.id === activeCategory).icon}
+                  <span className="ml-2">{categories.find(c => c.id === activeCategory).name}</span>
+                </h2>
+              </div>
+
+              <div className="px-6 py-5">
+                <motion.div
+                  key={activeCategory}
+                  initial="hidden"
+                  animate="visible"
+                  variants={containerVariants}
+                  className="divide-y divide-gray-200"
+                >
+                  {documentSections[activeCategory].map((section, index) => (
+                    <motion.div
+                      key={section.slug}
+                      variants={itemVariants}
+                      className="py-5"
+                    >
+                      <a href={`#${section.slug}`} className="block group">
+                        <div className="flex items-center justify-between">
+                          <h3 className="text-lg font-medium text-gray-900 group-hover:text-primary-600">
+                            {section.title}
+                          </h3>
+                          <ChevronRight className="w-5 h-5 text-gray-400 group-hover:text-primary-600" />
+                        </div>
+                        <p className="mt-2 text-gray-500">
+                          {activeCategory === 'quickstart' && section.slug === 'installation' &&
+                            'Install DocuAid in your browser or set up our API client in your application.'}
+                          {activeCategory === 'quickstart' && section.slug === 'account-setup' &&
+                            'Create an account and configure your initial settings to get started.'}
+                        </p>
+                      </a>
+                    </motion.div>
+                  ))}
+                </motion.div>
+              </div>
             </div>
 
-            <div className="text-center mt-10">
-              <p className="mb-4 text-gray-600">Still have questions?</p>
-              <Button variant="primary">Contact Support</Button>
+            <div className="mt-8 bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+              <div className="px-6 py-5 border-b border-gray-200">
+                <h2 className="text-2xl font-bold text-gray-900">Installation Guide</h2>
+              </div>
+
+              <div className="px-6 py-5 prose prose-primary max-w-none">
+                <h3 id="browser-extension">Browser Extension Installation</h3>
+                <p>
+                  DocuAid is available as a browser extension for Chrome, Firefox, and Edge. Follow these steps to install:
+                </p>
+
+                <ol>
+                  <li>
+                    <strong>Chrome:</strong> Visit the <a href="#" className="text-primary-600 hover:text-primary-800">Chrome Web Store</a> and click "Add to Chrome"
+                  </li>
+                  <li>
+                    <strong>Firefox:</strong> Visit the <a href="#" className="text-primary-600 hover:text-primary-800">Firefox Add-ons Store</a> and click "Add to Firefox"
+                  </li>
+                  <li>
+                    <strong>Edge:</strong> Visit the <a href="#" className="text-primary-600 hover:text-primary-800">Edge Add-ons Store</a> and click "Get"
+                  </li>
+                </ol>
+
+                <p>
+                  After installation, you'll see the DocuAid icon in your browser toolbar. Click it to open the DocuAid sidebar.
+                </p>
+
+                <h3 id="api-client">API Client Installation</h3>
+                <p>
+                  For programmatic access to DocuAid, you can use our official client libraries:
+                </p>
+
+                <div className="bg-gray-50 rounded-md p-4 my-4">
+                  <p className="text-sm font-mono text-gray-700">
+                    # Python
+                    <br />
+                    pip install docuaid-client
+                    <br /><br />
+                    # JavaScript
+                    <br />
+                    npm install @docuaid/client
+                  </p>
+                </div>
+
+                <p>
+                  For more detailed installation options and troubleshooting, see the <a href="#" className="text-primary-600 hover:text-primary-800">complete installation guide</a>.
+                </p>
+              </div>
             </div>
           </div>
         </div>
+      </div>
 
-        <div className="bg-gradient-to-r from-accent-500 via-primary-500 to-secondary-500 py-16">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="text-3xl font-bold text-white">Ready to get started with DocuAid?</h2>
-            <p className="mt-4 text-xl text-white opacity-90 max-w-2xl mx-auto">
-              Try our browser extension today and transform your documentation experience.
+      <div className="bg-gray-50 py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-extrabold text-gray-900">Frequently Asked Questions</h2>
+            <p className="mt-4 text-lg text-gray-500">
+              Get quick answers to common questions about DocuAid.
             </p>
-            <div className="mt-10">
-              <Button
-                variant="secondary"
-                size="lg"
-                className="bg-white hover:bg-gray-50 text-primary-600"
+          </div>
+
+          <div className="max-w-3xl mx-auto">
+            {faqs.map((faq, index) => (
+              <div
+                key={index}
+                className="bg-white shadow-sm border border-gray-200 rounded-lg mb-4 overflow-hidden"
               >
-                Install DocuAid
-              </Button>
-              <Button
-                variant="ghost"
-                size="lg"
-                className="ml-4 text-white border-white hover:bg-white/10"
-              >
-                Browse Documentation
-              </Button>
-            </div>
+                <button
+                  onClick={() => toggleFAQ(index)}
+                  className="w-full px-6 py-4 text-left flex justify-between items-center focus:outline-none"
+                >
+                  <span className="text-lg font-medium text-gray-900">{faq.question}</span>
+                  <ChevronDown
+                    className={`w-5 h-5 text-gray-500 transform transition-transform duration-200 ${expandedFAQs.includes(index) ? 'rotate-180' : ''
+                      }`}
+                  />
+                </button>
+
+                {expandedFAQs.includes(index) && (
+                  <div className="px-6 pb-4">
+                    <p className="text-gray-600">{faq.answer}</p>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+
+          <div className="text-center mt-10">
+            <p className="mb-4 text-gray-600">Still have questions?</p>
+            <Button variant="primary">Contact Support</Button>
+          </div>
+        </div>
+      </div>
+
+      <div className="bg-gradient-to-r from-accent-500 via-primary-500 to-secondary-500 py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl font-bold text-white">Ready to get started with DocuAid?</h2>
+          <p className="mt-4 text-xl text-white opacity-90 max-w-2xl mx-auto">
+            Try our browser extension today and transform your documentation experience.
+          </p>
+          <div className="mt-10">
+            <Button
+              variant="secondary"
+              size="lg"
+              className="bg-white hover:bg-gray-50 text-primary-600"
+            >
+              Install DocuAid
+            </Button>
+            <Button
+              variant="ghost"
+              size="lg"
+              className="ml-4 text-white border-white hover:bg-white/10"
+            >
+              Browse Documentation
+            </Button>
           </div>
         </div>
       </div>
