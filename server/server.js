@@ -7,6 +7,7 @@ const jwt = require('jsonwebtoken');
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const session = require('express-session');
+const cookieParser = require('cookie-parser');
 require('dotenv').config();
 
 const app = express();
@@ -40,27 +41,25 @@ const FRONTEND_URL = process.env.FRONTEND_URL || "http://localhost:5173";
 
 // CORS Configuration - Allow all localhost ports with more flexibility
 app.use(cors({
-  origin: function (origin, callback) {
-    // Allow any origin that is localhost, the FRONTEND_URL, or undefined (like Postman requests)
-    if (!origin || origin.startsWith('http://localhost:') || origin === process.env.FRONTEND_URL) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
+  origin: ['https://www.docuaid.online', 'http://localhost:5173'],
   credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  allowedHeaders: ['Content-Type', 'Authorization']
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'Origin', 'Accept']
 }));
 
 app.use(bodyParser.json());
+app.use(cookieParser());
 
 // Add session middleware
 app.use(session({
   secret: SESSION_SECRET,
   resave: false,
   saveUninitialized: false,
-  cookie: { secure: false } // Set to true in production with HTTPS
+  cookie: {
+    secure: process.env.NODE_ENV === 'production',
+    sameSite: 'none',
+    maxAge: 24 * 60 * 60 * 1000 // 1 day
+  }
 }));
 
 // Initialize Passport
@@ -171,8 +170,31 @@ app.post('/register', async (req, res) => {
     // Save user
     await newUser.save();
 
+    // Generate JWT token
+    const token = jwt.sign(
+      { userId: newUser._id, email: newUser.email },
+      JWT_SECRET,
+      { expiresIn: '24h' }
+    );
+
+    // Set cookie
+    res.cookie('token', token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'none',
+      maxAge: 24 * 60 * 60 * 1000 // 1 day
+    });
+
     console.log('User registered successfully:', email);
-    res.status(201).json({ message: 'User registered successfully' });
+    res.status(201).json({
+      message: 'User registered successfully',
+      user: {
+        id: newUser._id,
+        name: newUser.name,
+        email: newUser.email
+      },
+      token
+    });
   } catch (error) {
     console.error('Registration error:', error);
     res.status(500).json({ message: 'Registration failed. Please try again.' });
@@ -209,6 +231,14 @@ app.post('/login', async (req, res) => {
       { expiresIn: '24h' }
     );
 
+    // Set cookie
+    res.cookie('token', token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'none',
+      maxAge: 24 * 60 * 60 * 1000 // 1 day
+    });
+
     // Send response with user data (excluding password)
     const userData = {
       id: user._id,
@@ -219,8 +249,8 @@ app.post('/login', async (req, res) => {
     console.log('User logged in successfully:', email);
     res.status(200).json({
       message: 'Login successful',
-      token,
-      user: userData
+      user: userData,
+      token
     });
   } catch (error) {
     console.error('Login error:', error);
@@ -251,6 +281,14 @@ app.get('/auth/google/callback',
       { expiresIn: '24h' }
     );
 
+    // Set cookie
+    res.cookie('token', token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'none',
+      maxAge: 24 * 60 * 60 * 1000 // 1 day
+    });
+
     // Prepare user data for frontend
     const userData = {
       id: req.user._id,
@@ -258,32 +296,13 @@ app.get('/auth/google/callback',
       email: req.user.email
     };
 
-    // Get the origin from the request or use a default
-    let origin = process.env.FRONTEND_URL;
-
-    if (!origin) {
-      // If FRONTEND_URL is not set, try to get it from the request
-      origin = req.headers.origin;
-
-      if (!origin && req.headers.referer) {
-        // Extract origin from referer if available
-        const refererUrl = new URL(req.headers.referer);
-        origin = `${refererUrl.protocol}//${refererUrl.host}`;
-      }
-
-      // Fallback to a default if needed
-      if (!origin) {
-        // Try to use some common localhost ports
-        const possiblePorts = [5173, 5174, 5175, 5176, 5177, 5178, 5179, 5180, 5181];
-        origin = `http://localhost:${possiblePorts[0]}`;
-      }
-    }
+    // Get the frontend URL from environment variable
+    const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:5173';
 
     // Construct the redirect URL
-    const redirectUrl = `${origin}/login?token=${token}&user=${encodeURIComponent(JSON.stringify(userData))}`;
+    const redirectUrl = `${frontendUrl}/login?token=${token}&user=${encodeURIComponent(JSON.stringify(userData))}`;
 
-    console.log('Google Auth - Detected origin:', origin);
-    console.log('Redirecting to:', redirectUrl);
+    console.log('Google Auth - Redirecting to:', redirectUrl);
 
     // Redirect to the frontend with token and user data
     res.redirect(redirectUrl);
