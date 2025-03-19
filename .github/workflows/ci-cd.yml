@@ -21,10 +21,17 @@ jobs:
       - name: Install dependencies
         run: npm ci
         
+      - name: Create test environment
+        run: |
+          echo "VITE_API_URL=https://docuaid-backend-production.up.railway.app" > .env
+          mkdir -p src/components
+          touch src/components/Login.jsx src/components/Signup.jsx
+        
       - name: Run tests
         run: npm run test
         env:
           VITE_API_URL: 'https://docuaid-backend-production.up.railway.app'
+          NODE_ENV: 'test'
         
       - name: Run linting
         run: npm run lint

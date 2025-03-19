@@ -1,5 +1,6 @@
 import { defineConfig, loadEnv } from 'vite';
 import react from '@vitejs/plugin-react';
+import { resolve } from 'path';
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '');
@@ -7,6 +8,11 @@ export default defineConfig(({ mode }) => {
 
   return {
     plugins: [react()],
+    resolve: {
+      alias: {
+        '@': resolve(__dirname, './src')
+      }
+    },
     server: {
       port: 5173, // Changed from 3000 to 5173 to avoid conflicts
       proxy: {
@@ -20,7 +26,12 @@ export default defineConfig(({ mode }) => {
     test: {
       globals: true,
       environment: 'jsdom',
-      setupFiles: './src/test/setup.js',
+      setupFiles: ['./src/test/setup.js', './src/test/jsdom.setup.js'],
+      environmentOptions: {
+        jsdom: {
+          resources: 'usable',
+        }
+      },
       coverage: {
         reporter: ['text', 'json', 'html'],
       },
@@ -30,8 +41,14 @@ export default defineConfig(({ mode }) => {
         ['**/*.test.{js,jsx}', 'jsdom'],
       ],
       deps: {
-        inline: ['react-router-dom'],
+        fallbackCJS: true,
+        inline: [
+          'react-router-dom',
+          /vitest-canvas-mock/,
+          /vitest-webgl-canvas-mock/,
+        ],
       },
+      threads: false,
       css: {
         modules: {
           classNameStrategy: 'non-scoped',
