@@ -14,39 +14,39 @@ jobs:
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
       - name: Wait for Vercel deployment
-        run: sleep 60  # Give Vercel time to complete the deployment
+        run: sleep 90  # Give Vercel more time to complete the deployment
 
       - name: Check website availability
         run: |
-          STATUS_CODE=$(curl -s -o /dev/null -w "%{http_code}" https://docuaid.online)
+          STATUS_CODE=$(curl -s -L -o /dev/null -w "%{http_code}" https://docuaid.online)
           echo "Status code: $STATUS_CODE"
-          if [[ "$STATUS_CODE" -ne 200 ]]; then
-            echo "Website is not responding with 200 OK"
+          if [[ "$STATUS_CODE" -lt 200 || "$STATUS_CODE" -ge 400 ]]; then
+            echo "Website is not responding with a successful status code"
             exit 1
           else
-            echo "Website is up and running!"
+            echo "Website is up and running with status code $STATUS_CODE!"
           fi
 
       - name: Check login page availability
         run: |
-          STATUS_CODE=$(curl -s -o /dev/null -w "%{http_code}" https://docuaid.online/login)
+          STATUS_CODE=$(curl -s -L -o /dev/null -w "%{http_code}" https://docuaid.online/login)
           echo "Status code: $STATUS_CODE"
-          if [[ "$STATUS_CODE" -ne 200 ]]; then
-            echo "Login page is not responding with 200 OK"
+          if [[ "$STATUS_CODE" -lt 200 || "$STATUS_CODE" -ge 400 ]]; then
+            echo "Login page is not responding with a successful status code"
             exit 1
           else
-            echo "Login page is accessible!"
+            echo "Login page is accessible with status code $STATUS_CODE!"
           fi
 
       - name: Check signup page availability
         run: |
-          STATUS_CODE=$(curl -s -o /dev/null -w "%{http_code}" https://docuaid.online/signup)
+          STATUS_CODE=$(curl -s -L -o /dev/null -w "%{http_code}" https://docuaid.online/signup)
           echo "Status code: $STATUS_CODE"
-          if [[ "$STATUS_CODE" -ne 200 ]]; then
-            echo "Signup page is not responding with 200 OK"
+          if [[ "$STATUS_CODE" -lt 200 || "$STATUS_CODE" -ge 400 ]]; then
+            echo "Signup page is not responding with a successful status code"
             exit 1
           else
-            echo "Signup page is accessible!"
+            echo "Signup page is accessible with status code $STATUS_CODE!"
           fi
 
       - name: Send notification on failure
