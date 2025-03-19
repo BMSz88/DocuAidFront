@@ -22,15 +22,11 @@ jobs:
         run: npm ci
         
       - name: Create test environment
-        run: |
-          echo "VITE_API_URL=https://docuaid-backend-production.up.railway.app" > .env
-          mkdir -p src/components
-          touch src/components/Login.jsx src/components/Signup.jsx
+        run: echo "VITE_API_URL=https://docuaid-backend-production.up.railway.app" > .env
         
-      - name: Run tests
+      - name: Run basic tests
         run: npm run test
         env:
-          VITE_API_URL: 'https://docuaid-backend-production.up.railway.app'
           NODE_ENV: 'test'
         
       - name: Run linting
