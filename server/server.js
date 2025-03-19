@@ -10,6 +10,9 @@ const session = require('express-session');
 const cookieParser = require('cookie-parser');
 require('dotenv').config();
 
+// Import User model
+const User = require('./models/User');
+
 const app = express();
 const PORT = process.env.PORT || 3002;
 
@@ -36,12 +39,20 @@ if (!process.env.GOOGLE_CLIENT_ID || !process.env.GOOGLE_CLIENT_SECRET) {
 
 const JWT_SECRET = process.env.JWT_SECRET || require('crypto').randomBytes(32).toString('hex');
 const SESSION_SECRET = process.env.SESSION_SECRET || JWT_SECRET;
-const GOOGLE_CALLBACK_URL = process.env.GOOGLE_CALLBACK_URL || "http://localhost:3001/auth/google/callback";
+
+// Hardcode the callback URL to ensure exact match
+const GOOGLE_CALLBACK_URL = "https://docuaidfront-production.up.railway.app/auth/google/callback";
+
 const FRONTEND_URL = process.env.FRONTEND_URL || "http://localhost:5173";
 
 // CORS Configuration - Allow all localhost ports with more flexibility
 app.use(cors({
-  origin: ['https://www.docuaid.online', 'http://localhost:5173'],
+  origin: [
+    'https://www.docuaid.online',
+    'https://docuaid.online',
+    'http://localhost:5173',
+    'https://docuaidfront-production.up.railway.app'
+  ],
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'Origin', 'Accept'],
@@ -92,7 +103,12 @@ if (process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET) {
         // Find or create user in database
         console.log('Google profile:', profile.displayName, profile.emails[0].value);
 
-        let user = await User.findOne({ email: profile.emails[0].value });
+        let user = await User.findOne({
+          $or: [
+            { email: profile.emails[0].value },
+            { googleId: profile.id }
+          ]
+        });
 
         if (!user) {
           // Create a new user with Google profile data
@@ -102,11 +118,21 @@ if (process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET) {
           user = new User({
             name: profile.displayName,
             email: profile.emails[0].value,
-            password: hashedPassword
+            googleId: profile.id,
+            password: hashedPassword,
+            profilePicture: profile.photos && profile.photos[0] ? profile.photos[0].value : ''
           });
 
           await user.save();
           console.log('New Google user created:', user.email);
+        } else if (!user.googleId) {
+          // If user exists but doesn't have googleId, update it
+          user.googleId = profile.id;
+          if (profile.photos && profile.photos[0] && !user.profilePicture) {
+            user.profilePicture = profile.photos[0].value;
+          }
+          await user.save();
+          console.log('Updated existing user with Google ID:', user.email);
         } else {
           console.log('Existing user found with Google email:', user.email);
         }
@@ -135,17 +161,7 @@ if (process.env.MONGO_URI) {
   console.error('MongoDB connection skipped due to missing MONGO_URI');
 }
 
-// User Schema
-const userSchema = new mongoose.Schema({
-  name: { type: String, required: true },
-  email: { type: String, required: true, unique: true },
-  password: { type: String, required: true },
-  createdAt: { type: Date, default: Date.now }
-});
-
-const User = mongoose.model('User', userSchema);
-
-// Register endpoint
+// User registration route
 app.post('/register', async (req, res) => {
   try {
     console.log('Register request received:', req.body);
@@ -301,8 +317,13 @@ app.get('/auth/google/callback',
       email: req.user.email
     };
 
-    // Get the frontend URL from environment variable
-    const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:5173';
+    // Use hardcoded frontend URL for production or fallback to environment variable
+    let frontendUrl = 'https://www.docuaid.online';
+
+    // Use environment variable if available and not in production
+    if (process.env.FRONTEND_URL && process.env.NODE_ENV !== 'production') {
+      frontendUrl = process.env.FRONTEND_URL;
+    }
 
     // Construct the redirect URL
     const redirectUrl = `${frontendUrl}/login?token=${token}&user=${encodeURIComponent(JSON.stringify(userData))}`;
