@@ -24,6 +24,19 @@ export default defineConfig(({ mode }) => {
       coverage: {
         reporter: ['text', 'json', 'html'],
       },
+      mockReset: true,
+      restoreMocks: true,
+      environmentMatchGlobs: [
+        ['**/*.test.{js,jsx}', 'jsdom'],
+      ],
+      deps: {
+        inline: ['react-router-dom'],
+      },
+      css: {
+        modules: {
+          classNameStrategy: 'non-scoped',
+        },
+      },
     },
   };
 });

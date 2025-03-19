@@ -11,7 +11,8 @@
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "vercel-install": "mkdir -p src/components && cp -f src/components/login.jsx src/components/Login.jsx && cp -f src/components/signup.jsx src/components/Signup.jsx && touch src/CareersPage.jsx src/BenefitsPage.jsx src/IntegrationsPage.jsx src/DocumentationPage.jsx src/PrivacyPage.jsx src/TermsPage.jsx",
-    "test": "vitest",
+    "test": "vitest run",
+    "test:watch": "vitest",
     "test:coverage": "vitest run --coverage"
   },
   "dependencies": {
