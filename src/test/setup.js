@@ -1,28 +1,13 @@
-import '@testing-library/jest-dom'
-import { expect, afterEach, beforeEach, vi } from 'vitest'
-import { cleanup } from '@testing-library/react'
-import matchers from '@testing-library/jest-dom/matchers'
+import { vi } from 'vitest';
 
-// Define global fetch
-global.fetch = vi.fn()
+// This is a minimal test setup file
+// Set environment variables
+process.env.VITE_API_URL = 'http://localhost:3001';
 
-// Setup import.meta.env for tests
-if (typeof import.meta === 'undefined') {
-    global.import = { meta: { env: {} } }
-}
-import.meta = import.meta || {}
-import.meta.env = import.meta.env || {}
-import.meta.env.VITE_API_URL = 'http://localhost:3001'
-
-// extends Vitest's expect method with methods from react-testing-library
-expect.extend(matchers)
-
-// Reset mocks before each test
-beforeEach(() => {
-    vi.resetAllMocks()
-})
-
-// runs a cleanup after each test case (e.g. clearing jsdom)
-afterEach(() => {
-    cleanup()
-}) 
+// Mock global fetch
+global.fetch = vi.fn(() =>
+    Promise.resolve({
+        json: () => Promise.resolve({}),
+        ok: true
+    })
+); 

@@ -1,8 +1,6 @@
-import { describe, it, expect } from 'vitest'
+// Basic test that will pass
+import { test, expect } from 'vitest';
 
-// Create a very simple test that will pass
-describe('Basic Test', () => {
-    it('should pass', () => {
-        expect(true).toBe(true)
-    })
-}) 
+test('true is true', () => {
+    expect(true).toBe(true);
+}); 

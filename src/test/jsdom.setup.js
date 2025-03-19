@@ -1,11 +1,16 @@
 // This file is used to setup the jsdom environment for tests
 
-// Setup global browser objects that might be missing in the test environment
+// Set up minimal DOM environment for tests
 global.ResizeObserver = class ResizeObserver {
     observe() { }
     unobserve() { }
     disconnect() { }
 };
+
+// Make sure process.env is defined
+global.process = global.process || {};
+global.process.env = global.process.env || {};
+global.process.env.VITE_API_URL = 'http://localhost:3001';
 
 global.DOMRect = class DOMRect {
     constructor(x = 0, y = 0, width = 0, height = 0) {

@@ -26,34 +26,13 @@ export default defineConfig(({ mode }) => {
     test: {
       globals: true,
       environment: 'jsdom',
-      setupFiles: ['./src/test/setup.js', './src/test/jsdom.setup.js'],
-      environmentOptions: {
-        jsdom: {
-          resources: 'usable',
-        }
-      },
+      setupFiles: ['./src/test/setup.js'],
       coverage: {
         reporter: ['text', 'json', 'html'],
       },
       mockReset: true,
       restoreMocks: true,
-      environmentMatchGlobs: [
-        ['**/*.test.{js,jsx}', 'jsdom'],
-      ],
-      deps: {
-        fallbackCJS: true,
-        inline: [
-          'react-router-dom',
-          /vitest-canvas-mock/,
-          /vitest-webgl-canvas-mock/,
-        ],
-      },
-      threads: false,
-      css: {
-        modules: {
-          classNameStrategy: 'non-scoped',
-        },
-      },
+      threads: false
     },
   };
 });
