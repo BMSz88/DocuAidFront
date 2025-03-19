@@ -1,5 +1,10 @@
+// src/Pages.jsx
 import React, { useState } from "react";
+// Import HelpCenter component - supports both named import or default import
+import { HelpCenter } from './components/HelpCenter.jsx';
+// Alternatively you could use: import HelpCenter from './components/HelpCenter.jsx';
 
+// Enterprise component
 const Enterprise = () => {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-white pt-6">
@@ -34,7 +39,7 @@ const Enterprise = () => {
           <option value="100+">100+</option>
         </select>
         
-        <button className="w-full bg-black text-white  bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 py-3 mt-6 rounded-md hover:opacity-90">
+        <button className="w-full bg-black text-white bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 py-3 mt-6 rounded-md hover:opacity-90">
           Submit
         </button>
       </div>
@@ -42,6 +47,7 @@ const Enterprise = () => {
   );
 };
 
+// Pricing component
 const Pricing = () => {
   const [isYearly, setIsYearly] = useState(false);
 
@@ -179,34 +185,11 @@ const Pricing = () => {
   );
 };
 
-const HelpCenter = () => {
-  return (
-    <div className="max-w-2xl mx-auto p-6 text-center">
-      <h1 className="text-5xl font-bold text-transparent bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text flex items-center justify-center gap-2 pt-16">
-        👋 How can we help you?
-      </h1>
-      <p className="text-gray-600 mt-8">
-        Need a hand or have insights to share? Our Help Center is your go-to spot for support and suggestions.
-      </p>
-      
-      <form className="mt-10 text-left">
-        <label className="block text-gray-700 font-semibold" htmlFor="email">YOUR EMAIL</label>
-        <input type="email" id="email" className="w-full p-2 mt-1 border rounded-md" placeholder="Enter your email" />
-        
-        <label className="block text-gray-700 font-semibold mt-4" htmlFor="name">YOUR NAME</label>
-        <input type="text" id="name" className="w-full p-2 mt-1 border rounded-md" placeholder="Enter your name" />
-        
-        <label className="block text-gray-700 font-semibold mt-4" htmlFor="message">HOW CAN WE HELP?</label>
-        <textarea id="message" className="w-full p-2 mt-1 border rounded-md" rows="4" placeholder="Tell us how we can help! Whether you're looking for answers, need to troubleshoot an issue, or just want to share your thoughts on how we can improve, we're all ears."></textarea>
-        
-        <button className="w-full mt-6 p-3 text-white bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 py-3 mt-6 rounded-md hover:opacity-90">Submit</button>
-      </form>
-    </div>
-  );
-};
+// Export the components so they can be imported individually 
 export { Enterprise, Pricing, HelpCenter };
 
-export default function Pages() {
+// Default export for the whole file
+const Pages = () => {
   return (
     <>
       <Enterprise />
@@ -214,4 +197,6 @@ export default function Pages() {
       <HelpCenter />
     </>
   );
-}
+};
+
+export default Pages;
