@@ -16,7 +16,31 @@ Database: User login data and history management
 Platform: Web Extension
 
 
-## Deployment
+## CI/CD Pipeline
+
+This project uses GitHub Actions for continuous integration and continuous deployment, ensuring code quality and automated deployments.
+
+### Workflow Overview
+
+1. **CI/CD Pipeline** (`.github/workflows/ci-cd.yml`)
+   - Runs on every push to main and pull requests
+   - Testing: Executes unit tests and linting
+   - Building: Compiles and bundles the application
+   - Security: Performs security audits and vulnerability scanning
+   - Deployment: Automatically deploys to Vercel when changes are pushed to main
+
+2. **Deployment Verification** (`.github/workflows/verify-deployment.yml`)
+   - Runs after successful CI/CD pipeline completion
+   - Waits for Vercel deployment to complete
+   - Checks website and critical page availability
+   - Sends notifications if verification fails
+
+3. **Automated Testing** (`.github/workflows/auto-test.yml`)
+   - Runs daily at midnight UTC
+   - Executes all tests with coverage reporting
+   - Performs basic end-to-end testing
+   - Monitors production site availability
+   - Can be manually triggered when needed
 
 ### Local Development
 
@@ -97,5 +121,31 @@ For the live version, visit:
 ```bash
 www.docuaid.online
 ```
+
+## Environment Setup
+
+The application requires the following environment variables:
+
+- `VITE_API_URL`: URL of the backend API
+- `VITE_GOOGLE_CALLBACK_URL`: Callback URL for Google authentication
+
+## Deployment
+
+The application is automatically deployed to Vercel when changes are pushed to the main branch. The deployment can be manually triggered by running the GitHub Actions workflow.
+
+## Project Structure
+
+- `src/`: Source code
+  - `components/`: React components
+  - `assets/`: Static assets
+  - `test/`: Test setup and utilities
+
+## Contributing
+
+1. Create a new branch for your feature or bugfix
+2. Make your changes
+3. Write tests for your changes
+4. Open a pull request
+5. Ensure all CI checks pass before merging
 
 
