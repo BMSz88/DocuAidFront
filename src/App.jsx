@@ -27,6 +27,7 @@ import ManagingDocumentSources from './pages/managing-document-sources.jsx';
 import APIReference from './pages/api-reference.jsx';
 import AdvancedQueryTechniques from './pages/advanced-query-techniques.jsx';
 import SharingAndCollaboration from './pages/sharing-and-collaboration.jsx';
+import CustomizingExperience from './pages/customizing-experience.jsx';
 import DocumentationLayout from './components/DocumentationLayout.jsx';
 
 const AppLayout = () => {
@@ -38,6 +39,7 @@ const AppLayout = () => {
                              location.pathname.startsWith('/managing-document-sources') ||
                              location.pathname.startsWith('/advanced-query-techniques') ||
                              location.pathname.startsWith('/sharing-and-collaboration') ||
+                             location.pathname.startsWith('/customizing-experience') ||
                              location.pathname.startsWith('/api-reference') ||
                              location.pathname.startsWith('/user-guides') ||
                              location.pathname.startsWith('/integrations') ||
@@ -104,6 +106,11 @@ const AppLayout = () => {
               <SharingAndCollaboration />
             </DocumentationLayout>
           } />
+          <Route path="/customizing-experience" element={
+            <DocumentationLayout>
+              <CustomizingExperience />
+            </DocumentationLayout>
+          } />
           <Route path="/api-reference" element={
             <DocumentationLayout>
               <APIReference />
@@ -133,7 +140,7 @@ function ScrollRestoration() {
     }
     
     // Reset the scroll of specific documentation pages
-    const pageIds = ['understanding-ai-responses', 'getting-started', 'managing-document-sources', 'advanced-query-techniques', 'sharing-and-collaboration', 'api-reference'];
+    const pageIds = ['understanding-ai-responses', 'getting-started', 'managing-document-sources', 'advanced-query-techniques', 'sharing-and-collaboration', 'customizing-experience', 'api-reference'];
     
     pageIds.forEach(id => {
       const container = document.getElementById(id);
