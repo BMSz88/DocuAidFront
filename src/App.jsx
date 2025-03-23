@@ -30,6 +30,7 @@ import SharingAndCollaboration from './pages/sharing-and-collaboration.jsx';
 import CustomizingExperience from './pages/customizing-experience.jsx';
 import DocumentationLayout from './components/DocumentationLayout.jsx';
 import GitHubIntegration from './pages/github-integration.jsx';
+import SlackIntegration from './pages/slack-integration.jsx';
 
 const AppLayout = () => {
   const location = useLocation();
@@ -48,7 +49,8 @@ const AppLayout = () => {
                              location.pathname.startsWith('/release-notes') ||
                              location.pathname.startsWith('/community') ||
                              location.pathname.startsWith('/support') ||
-                             location.pathname.startsWith('/github-integration');
+                             location.pathname.startsWith('/github-integration') ||
+                             location.pathname.startsWith('/slack-integration');
 
   return (
     <div className="min-h-screen bg-white">
@@ -123,6 +125,11 @@ const AppLayout = () => {
               <GitHubIntegration />
             </DocumentationLayout>
           } />
+          <Route path="/slack-integration" element={
+            <DocumentationLayout>
+              <SlackIntegration />
+            </DocumentationLayout>
+          } />
         </Routes>
       </main>
       {!isDashboardPage && !isAdminPage && !isDocumentationPage && <Footer />}
@@ -147,7 +154,7 @@ function ScrollRestoration() {
     }
     
     // Reset the scroll of specific documentation pages
-    const pageIds = ['understanding-ai-responses', 'getting-started', 'managing-document-sources', 'advanced-query-techniques', 'sharing-and-collaboration', 'customizing-experience', 'api-reference', 'github-integration'];
+    const pageIds = ['understanding-ai-responses', 'getting-started', 'managing-document-sources', 'advanced-query-techniques', 'sharing-and-collaboration', 'customizing-experience', 'api-reference', 'github-integration', 'slack-integration'];
     
     pageIds.forEach(id => {
       const container = document.getElementById(id);
