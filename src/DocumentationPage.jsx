@@ -33,7 +33,17 @@ const DocumentationPage = () => {
     { id: 'guides', name: 'User Guides', icon: <FileText className="w-5 h-5" /> },
     { id: 'api', name: 'API Reference', icon: <Code className="w-5 h-5" /> },
     { id: 'integrations', name: 'Integrations', icon: <Package className="w-5 h-5" />, path: '/integrations' },
-    { id: 'examples', name: 'Code Examples', icon: <Terminal className="w-5 h-5" />, path: '/code-examples' }
+    { id: 'examples', name: 'Code Examples', icon: <Terminal className="w-5 h-5" />, path: '/code-examples' },
+    {
+      id: 'resources',
+      title: 'Resources',
+      slug: 'resources',
+      items: [
+        { title: 'Community Forum', slug: 'community-forum', path: '/community-forum' },
+        { title: 'Support', slug: 'support', path: '/support' },
+        { title: 'Release Notes', slug: 'release-notes', path: '/release-notes' },
+      ]
+    },
   ];
 
   const documentSections = {
@@ -177,7 +187,7 @@ const DocumentationPage = () => {
                   {[
                     { name: 'Release Notes', icon: <FileText className="w-5 h-5" />, path: '/release-notes' },
                     { name: 'Community Forum', icon: <Users className="w-5 h-5" />, path: '/community-forum' },
-                    { name: 'Support', icon: <LifeBuoy className="w-5 h-5" /> }
+                    { name: 'Support', icon: <LifeBuoy className="w-5 h-5" />, path: '/support' }
                   ].map((item) => (
                     item.path ? (
                       <Link

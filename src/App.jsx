@@ -37,6 +37,7 @@ import Integrations from './pages/integrations';
 import CodeExamples from './pages/code-examples';
 import ReleaseNotes from './pages/release-notes';
 import CommunityForum from './pages/community-forum';
+import Support from './pages/support';
 
 const AppLayout = () => {
   const location = useLocation();
@@ -57,6 +58,7 @@ const AppLayout = () => {
       '/code-examples',
       '/release-notes',
       '/community-forum',
+      '/support',
       // ... existing code ...
     ].includes(pathname);
   }, []);
@@ -169,6 +171,11 @@ const AppLayout = () => {
               <CommunityForum />
             </DocumentationLayout>
           } />
+          <Route path="/support" element={
+            <DocumentationLayout>
+              <Support />
+            </DocumentationLayout>
+          } />
         </Routes>
       </main>
       {!isDashboardPage && !isAdminPage && !isDocumentationPage(location.pathname) && <Footer />}
@@ -193,7 +200,7 @@ function ScrollRestoration() {
     }
     
     // Reset the scroll of specific documentation pages
-    const pageIds = ['understanding-ai-responses', 'getting-started', 'managing-document-sources', 'advanced-query-techniques', 'sharing-and-collaboration', 'customizing-experience', 'api-reference', 'github-integration', 'slack-integration', 'vscode-extension', 'release-notes', 'community-forum'];
+    const pageIds = ['understanding-ai-responses', 'getting-started', 'managing-document-sources', 'advanced-query-techniques', 'sharing-and-collaboration', 'customizing-experience', 'api-reference', 'github-integration', 'slack-integration', 'vscode-extension', 'release-notes', 'community-forum', 'support'];
     
     pageIds.forEach(id => {
       const container = document.getElementById(id);
