@@ -33,7 +33,7 @@ const DocumentationPage = () => {
     { id: 'guides', name: 'User Guides', icon: <FileText className="w-5 h-5" /> },
     { id: 'api', name: 'API Reference', icon: <Code className="w-5 h-5" /> },
     { id: 'integrations', name: 'Integrations', icon: <Package className="w-5 h-5" />, path: '/integrations' },
-    { id: 'examples', name: 'Code Examples', icon: <Terminal className="w-5 h-5" /> }
+    { id: 'examples', name: 'Code Examples', icon: <Terminal className="w-5 h-5" />, path: '/code-examples' }
   ];
 
   const documentSections = {
@@ -66,11 +66,11 @@ const DocumentationPage = () => {
       { title: 'Custom Integrations', slug: 'custom-integrations', path: '/custom-integrations' }
     ],
     examples: [
-      { title: 'JavaScript Examples', slug: 'js-examples' },
-      { title: 'Python Examples', slug: 'python-examples' },
-      { title: 'React Integration', slug: 'react-integration' },
-      { title: 'Node.js Server Integration', slug: 'nodejs-integration' },
-      { title: 'CI/CD Pipeline Integration', slug: 'cicd-integration' }
+      { title: 'JavaScript Examples', slug: 'js-examples', path: '/code-examples' },
+      { title: 'Python Examples', slug: 'python-examples', path: '/code-examples' },
+      { title: 'React Integration', slug: 'react-integration', path: '/code-examples' },
+      { title: 'Node.js Server Integration', slug: 'nodejs-integration', path: '/code-examples' },
+      { title: 'CI/CD Pipeline Integration', slug: 'cicd-integration', path: '/code-examples' }
     ]
   };
 

@@ -34,6 +34,7 @@ import SlackIntegration from './pages/slack-integration.jsx';
 import VSCodeExtension from './pages/vscode-extension.jsx';
 import CustomIntegrations from './pages/custom-integrations';
 import Integrations from './pages/integrations';
+import CodeExamples from './pages/code-examples';
 
 const AppLayout = () => {
   const location = useLocation();
@@ -50,6 +51,8 @@ const AppLayout = () => {
       '/api-reference',
       '/github-integration',
       '/custom-integrations',
+      '/integrations',
+      '/code-examples',
       // ... existing code ...
     ].includes(pathname);
   }, []);
@@ -145,6 +148,11 @@ const AppLayout = () => {
           <Route path="/integrations" element={
             <DocumentationLayout>
               <Integrations />
+            </DocumentationLayout>
+          } />
+          <Route path="/code-examples" element={
+            <DocumentationLayout>
+              <CodeExamples />
             </DocumentationLayout>
           } />
         </Routes>
