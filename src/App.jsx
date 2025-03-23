@@ -29,6 +29,7 @@ import AdvancedQueryTechniques from './pages/advanced-query-techniques.jsx';
 import SharingAndCollaboration from './pages/sharing-and-collaboration.jsx';
 import CustomizingExperience from './pages/customizing-experience.jsx';
 import DocumentationLayout from './components/DocumentationLayout.jsx';
+import GitHubIntegration from './pages/github-integration.jsx';
 
 const AppLayout = () => {
   const location = useLocation();
@@ -46,7 +47,8 @@ const AppLayout = () => {
                              location.pathname.startsWith('/code-examples') ||
                              location.pathname.startsWith('/release-notes') ||
                              location.pathname.startsWith('/community') ||
-                             location.pathname.startsWith('/support');
+                             location.pathname.startsWith('/support') ||
+                             location.pathname.startsWith('/github-integration');
 
   return (
     <div className="min-h-screen bg-white">
@@ -116,6 +118,11 @@ const AppLayout = () => {
               <APIReference />
             </DocumentationLayout>
           } />
+          <Route path="/github-integration" element={
+            <DocumentationLayout>
+              <GitHubIntegration />
+            </DocumentationLayout>
+          } />
         </Routes>
       </main>
       {!isDashboardPage && !isAdminPage && !isDocumentationPage && <Footer />}
@@ -140,7 +147,7 @@ function ScrollRestoration() {
     }
     
     // Reset the scroll of specific documentation pages
-    const pageIds = ['understanding-ai-responses', 'getting-started', 'managing-document-sources', 'advanced-query-techniques', 'sharing-and-collaboration', 'customizing-experience', 'api-reference'];
+    const pageIds = ['understanding-ai-responses', 'getting-started', 'managing-document-sources', 'advanced-query-techniques', 'sharing-and-collaboration', 'customizing-experience', 'api-reference', 'github-integration'];
     
     pageIds.forEach(id => {
       const container = document.getElementById(id);

@@ -60,7 +60,7 @@ const DocumentationPage = () => {
       { title: 'Rate Limits', slug: 'api-rate-limits', path: '/api-reference' }
     ],
     integrations: [
-      { title: 'GitHub Integration', slug: 'github-integration' },
+      { title: 'GitHub Integration', slug: 'github-integration', path: '/github-integration' },
       { title: 'Slack Integration', slug: 'slack-integration' },
       { title: 'VS Code Extension', slug: 'vscode-extension' },
       { title: 'Custom Integrations', slug: 'custom-integrations' }
