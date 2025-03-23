@@ -1,9 +1,34 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 const ManagingDocumentSources = () => {
+  useEffect(() => {
+    // Force scroll to top when component mounts
+    document.body.scrollTop = 0; 
+    document.documentElement.scrollTop = 0;
+    
+    const contentElement = document.getElementById('managing-document-sources');
+    if (contentElement) {
+      contentElement.scrollTop = 0;
+    }
+
+    setTimeout(() => {
+      window.scrollTo(0, 0);
+      if (contentElement) {
+        contentElement.scrollTop = 0;
+      }
+    }, 200);
+  }, []);
+
   return (
-    <div className="max-w-4xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
-      <div className="mb-10">
+    <div 
+      id="managing-document-sources" 
+      className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 overflow-auto"
+      style={{ 
+        paddingTop: "80px",
+        paddingBottom: "40px"
+      }}
+    >
+      <div className="mb-10 sticky top-0 bg-gray-50 py-4 z-10">
         <h1 className="text-3xl font-extrabold text-gray-900 mb-4">Managing Document Sources</h1>
         <p className="text-lg text-gray-500">
           Learn how to effectively organize, update, and manage your document sources in DocuAid.

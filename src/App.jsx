@@ -118,16 +118,20 @@ function ScrollRestoration() {
       docContainer.scrollTop = 0;
     }
     
-    // Reset the scroll of the understanding-ai-responses container specifically
-    const aiResponsesContainer = document.getElementById('understanding-ai-responses');
-    if (aiResponsesContainer) {
-      aiResponsesContainer.scrollTop = 0;
-      
-      // Make sure the Understanding AI Responses header is visible
-      setTimeout(() => {
-        aiResponsesContainer.scrollIntoView({ behavior: 'auto', block: 'start' });
-      }, 100);
-    }
+    // Reset the scroll of specific documentation pages
+    const pageIds = ['understanding-ai-responses', 'getting-started', 'managing-document-sources', 'api-reference'];
+    
+    pageIds.forEach(id => {
+      const container = document.getElementById(id);
+      if (container) {
+        container.scrollTop = 0;
+        
+        // Make sure the header is visible
+        setTimeout(() => {
+          container.scrollIntoView({ behavior: 'auto', block: 'start' });
+        }, 100);
+      }
+    });
   }, [pathname]);
 
   return null;
