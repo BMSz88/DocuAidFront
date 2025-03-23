@@ -35,6 +35,7 @@ import VSCodeExtension from './pages/vscode-extension.jsx';
 import CustomIntegrations from './pages/custom-integrations';
 import Integrations from './pages/integrations';
 import CodeExamples from './pages/code-examples';
+import ReleaseNotes from './pages/release-notes';
 
 const AppLayout = () => {
   const location = useLocation();
@@ -53,6 +54,7 @@ const AppLayout = () => {
       '/custom-integrations',
       '/integrations',
       '/code-examples',
+      '/release-notes',
       // ... existing code ...
     ].includes(pathname);
   }, []);
@@ -155,6 +157,11 @@ const AppLayout = () => {
               <CodeExamples />
             </DocumentationLayout>
           } />
+          <Route path="/release-notes" element={
+            <DocumentationLayout>
+              <ReleaseNotes />
+            </DocumentationLayout>
+          } />
         </Routes>
       </main>
       {!isDashboardPage && !isAdminPage && !isDocumentationPage(location.pathname) && <Footer />}
@@ -179,7 +186,7 @@ function ScrollRestoration() {
     }
     
     // Reset the scroll of specific documentation pages
-    const pageIds = ['understanding-ai-responses', 'getting-started', 'managing-document-sources', 'advanced-query-techniques', 'sharing-and-collaboration', 'customizing-experience', 'api-reference', 'github-integration', 'slack-integration', 'vscode-extension'];
+    const pageIds = ['understanding-ai-responses', 'getting-started', 'managing-document-sources', 'advanced-query-techniques', 'sharing-and-collaboration', 'customizing-experience', 'api-reference', 'github-integration', 'slack-integration', 'vscode-extension', 'release-notes'];
     
     pageIds.forEach(id => {
       const container = document.getElementById(id);

@@ -175,18 +175,29 @@ const DocumentationPage = () => {
                 <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider">Resources</h3>
                 <div className="mt-3 space-y-1">
                   {[
-                    { name: 'Release Notes', icon: <FileText className="w-5 h-5" /> },
+                    { name: 'Release Notes', icon: <FileText className="w-5 h-5" />, path: '/release-notes' },
                     { name: 'Community Forum', icon: <Users className="w-5 h-5" /> },
                     { name: 'Support', icon: <LifeBuoy className="w-5 h-5" /> }
                   ].map((item) => (
-                    <a
-                      key={item.name}
-                      href="#"
-                      className="flex items-center px-3 py-2 text-sm font-medium text-gray-600 rounded-md hover:bg-gray-50 hover:text-gray-900"
-                    >
-                      <span className="mr-3">{item.icon}</span>
-                      {item.name}
-                    </a>
+                    item.path ? (
+                      <Link
+                        key={item.name}
+                        to={item.path}
+                        className="flex items-center px-3 py-2 text-sm font-medium text-gray-600 rounded-md hover:bg-gray-50 hover:text-gray-900"
+                      >
+                        <span className="mr-3">{item.icon}</span>
+                        {item.name}
+                      </Link>
+                    ) : (
+                      <a
+                        key={item.name}
+                        href="#"
+                        className="flex items-center px-3 py-2 text-sm font-medium text-gray-600 rounded-md hover:bg-gray-50 hover:text-gray-900"
+                      >
+                        <span className="mr-3">{item.icon}</span>
+                        {item.name}
+                      </a>
+                    )
                   ))}
                 </div>
               </div>
