@@ -1,9 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 const UnderstandingAIResponses = () => {
+  useEffect(() => {
+    // Scroll to the top of the page when component mounts
+    window.scrollTo(0, 0);
+    
+    // Alternatively, if using an element with ID
+    const element = document.getElementById('understanding-ai-responses');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, []);
+
   return (
-    <div className="max-w-4xl mx-auto py-10 px-4 sm:px-6 lg:px-8">
+    <div id="understanding-ai-responses" className="max-w-4xl mx-auto py-10 px-4 sm:px-6 lg:px-8 overflow-y-auto scroll-smooth" style={{ maxHeight: 'calc(100vh - 120px)' }}>
       <div className="mb-10">
         <h1 className="text-3xl font-bold text-gray-900 mb-4">Understanding AI Responses</h1>
         <p className="text-gray-600">

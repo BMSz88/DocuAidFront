@@ -185,7 +185,7 @@ const DocumentationLayout = ({ children }) => {
         </div>
 
         {/* Main content */}
-        <div className="flex-1 overflow-y-auto">
+        <div className="flex-1 overflow-y-auto" style={{ maxHeight: 'calc(100vh - 64px)' }}>
           {children}
         </div>
       </div>
