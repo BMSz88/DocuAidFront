@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar.jsx';
 import Hero from './components/Hero.jsx';
@@ -29,34 +29,33 @@ import AdvancedQueryTechniques from './pages/advanced-query-techniques.jsx';
 import SharingAndCollaboration from './pages/sharing-and-collaboration.jsx';
 import CustomizingExperience from './pages/customizing-experience.jsx';
 import DocumentationLayout from './components/DocumentationLayout.jsx';
-import GitHubIntegration from './pages/github-integration.jsx';
+import GitHubIntegration from './pages/github-integration';
 import SlackIntegration from './pages/slack-integration.jsx';
 import VSCodeExtension from './pages/vscode-extension.jsx';
+import CustomIntegrations from './pages/custom-integrations';
 
 const AppLayout = () => {
   const location = useLocation();
   const isDashboardPage = location.pathname === '/dashboard';
   const isAdminPage = location.pathname === '/admin/enterprise';
-  const isDocumentationPage = location.pathname.startsWith('/understanding-ai-responses') ||
-                             location.pathname.startsWith('/getting-started') ||
-                             location.pathname.startsWith('/managing-document-sources') ||
-                             location.pathname.startsWith('/advanced-query-techniques') ||
-                             location.pathname.startsWith('/sharing-and-collaboration') ||
-                             location.pathname.startsWith('/customizing-experience') ||
-                             location.pathname.startsWith('/api-reference') ||
-                             location.pathname.startsWith('/user-guides') ||
-                             location.pathname.startsWith('/integrations') ||
-                             location.pathname.startsWith('/code-examples') ||
-                             location.pathname.startsWith('/release-notes') ||
-                             location.pathname.startsWith('/community') ||
-                             location.pathname.startsWith('/support') ||
-                             location.pathname.startsWith('/github-integration') ||
-                             location.pathname.startsWith('/slack-integration') ||
-                             location.pathname.startsWith('/vscode-extension');
+  const isDocumentationPage = useCallback((pathname) => {
+    return [
+      '/documentation',
+      '/getting-started',
+      '/understanding-ai-responses',
+      '/managing-document-sources',
+      '/sharing-and-collaboration',
+      '/customizing-experience',
+      '/api-reference',
+      '/github-integration',
+      '/custom-integrations',
+      // ... existing code ...
+    ].includes(pathname);
+  }, []);
 
   return (
     <div className="min-h-screen bg-white">
-      {!isDashboardPage && !isAdminPage && !isDocumentationPage && <Navbar />}
+      {!isDashboardPage && !isAdminPage && !isDocumentationPage(location.pathname) && <Navbar />}
       <main>
         <Routes>
           <Route path="/" element={<>
@@ -137,9 +136,14 @@ const AppLayout = () => {
               <VSCodeExtension />
             </DocumentationLayout>
           } />
+          <Route path="/custom-integrations" element={
+            <DocumentationLayout>
+              <CustomIntegrations />
+            </DocumentationLayout>
+          } />
         </Routes>
       </main>
-      {!isDashboardPage && !isAdminPage && !isDocumentationPage && <Footer />}
+      {!isDashboardPage && !isAdminPage && !isDocumentationPage(location.pathname) && <Footer />}
     </div>
   );
 };
