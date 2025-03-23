@@ -1,0 +1,75 @@
+{
+  "buildCommand": "npm run build",
+  "installCommand": "npm install && npm run vercel-install",
+  "outputDirectory": "dist",
+  "framework": "vite",
+  "routes": [
+    {
+      "handle": "filesystem"
+    },
+    {
+      "src": "/login",
+      "dest": "/index.html"
+    },
+    {
+      "src": "/signup",
+      "dest": "/index.html"
+    },
+    {
+      "src": "/dashboard",
+      "dest": "/index.html"
+    },
+    {
+      "src": "/feature",
+      "dest": "/index.html"
+    },
+    {
+      "src": "/benefits",
+      "dest": "/index.html"
+    },
+    {
+      "src": "/how-it-works",
+      "dest": "/index.html"
+    },
+    {
+      "src": "/careers",
+      "dest": "/index.html"
+    },
+    {
+      "src": "/documentation",
+      "dest": "/index.html"
+    },
+    {
+      "src": "/privacy",
+      "dest": "/index.html"
+    },
+    {
+      "src": "/terms",
+      "dest": "/index.html"
+    },
+    {
+      "src": "/enterprise",
+      "dest": "/index.html"
+    },
+    {
+      "src": "/pricing",
+      "dest": "/index.html"
+    },
+    {
+      "src": "/help-center",
+      "dest": "/index.html"
+    },
+    {
+      "src": "/about",
+      "dest": "/index.html"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
+    }
+  ],
+  "env": {
+    "VITE_API_URL": "https://docuaidfront-production.up.railway.app",
+    "VITE_GOOGLE_CALLBACK_URL": "https://docuaidfront-production.up.railway.app/auth/google/callback"
+  }
+}

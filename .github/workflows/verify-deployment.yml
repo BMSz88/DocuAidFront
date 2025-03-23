@@ -1,0 +1,60 @@
+name: Verify Deployment
+
+on:
+  workflow_run:
+    workflows: ["CI/CD Pipeline"]
+    types:
+      - completed
+    branches:
+      - main
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    steps:
+      - name: Wait for Vercel deployment
+        run: sleep 90  # Give Vercel more time to complete the deployment
+
+      - name: Check website availability
+        run: |
+          STATUS_CODE=$(curl -s -L -o /dev/null -w "%{http_code}" https://docuaid.online)
+          echo "Status code: $STATUS_CODE"
+          if [[ "$STATUS_CODE" -lt 200 || "$STATUS_CODE" -ge 400 ]]; then
+            echo "Website is not responding with a successful status code"
+            exit 1
+          else
+            echo "Website is up and running with status code $STATUS_CODE!"
+          fi
+
+      - name: Check login page availability
+        run: |
+          STATUS_CODE=$(curl -s -L -o /dev/null -w "%{http_code}" https://docuaid.online/login)
+          echo "Status code: $STATUS_CODE"
+          if [[ "$STATUS_CODE" -lt 200 || "$STATUS_CODE" -ge 400 ]]; then
+            echo "Login page is not responding with a successful status code"
+            exit 1
+          else
+            echo "Login page is accessible with status code $STATUS_CODE!"
+          fi
+
+      - name: Check signup page availability
+        run: |
+          STATUS_CODE=$(curl -s -L -o /dev/null -w "%{http_code}" https://docuaid.online/signup)
+          echo "Status code: $STATUS_CODE"
+          if [[ "$STATUS_CODE" -lt 200 || "$STATUS_CODE" -ge 400 ]]; then
+            echo "Signup page is not responding with a successful status code"
+            exit 1
+          else
+            echo "Signup page is accessible with status code $STATUS_CODE!"
+          fi
+
+      - name: Send notification on failure
+        if: failure()
+        uses: rtCamp/action-slack-notify@v2
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+          SLACK_TITLE: "Deployment Verification Failed"
+          SLACK_MESSAGE: "The deployment verification for DocuAid failed. Please check the website."
+          SLACK_COLOR: danger
+        continue-on-error: true 

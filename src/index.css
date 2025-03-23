@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Add consistent page spacing */
+@layer components {
+  .page-container {
+    @apply pt-16 bg-white border-t-2 border-black;
+  }
+}
