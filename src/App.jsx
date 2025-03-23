@@ -31,6 +31,7 @@ import CustomizingExperience from './pages/customizing-experience.jsx';
 import DocumentationLayout from './components/DocumentationLayout.jsx';
 import GitHubIntegration from './pages/github-integration.jsx';
 import SlackIntegration from './pages/slack-integration.jsx';
+import VSCodeExtension from './pages/vscode-extension.jsx';
 
 const AppLayout = () => {
   const location = useLocation();
@@ -50,7 +51,8 @@ const AppLayout = () => {
                              location.pathname.startsWith('/community') ||
                              location.pathname.startsWith('/support') ||
                              location.pathname.startsWith('/github-integration') ||
-                             location.pathname.startsWith('/slack-integration');
+                             location.pathname.startsWith('/slack-integration') ||
+                             location.pathname.startsWith('/vscode-extension');
 
   return (
     <div className="min-h-screen bg-white">
@@ -130,6 +132,11 @@ const AppLayout = () => {
               <SlackIntegration />
             </DocumentationLayout>
           } />
+          <Route path="/vscode-extension" element={
+            <DocumentationLayout>
+              <VSCodeExtension />
+            </DocumentationLayout>
+          } />
         </Routes>
       </main>
       {!isDashboardPage && !isAdminPage && !isDocumentationPage && <Footer />}
@@ -154,7 +161,7 @@ function ScrollRestoration() {
     }
     
     // Reset the scroll of specific documentation pages
-    const pageIds = ['understanding-ai-responses', 'getting-started', 'managing-document-sources', 'advanced-query-techniques', 'sharing-and-collaboration', 'customizing-experience', 'api-reference', 'github-integration', 'slack-integration'];
+    const pageIds = ['understanding-ai-responses', 'getting-started', 'managing-document-sources', 'advanced-query-techniques', 'sharing-and-collaboration', 'customizing-experience', 'api-reference', 'github-integration', 'slack-integration', 'vscode-extension'];
     
     pageIds.forEach(id => {
       const container = document.getElementById(id);

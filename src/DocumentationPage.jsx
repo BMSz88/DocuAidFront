@@ -62,7 +62,7 @@ const DocumentationPage = () => {
     integrations: [
       { title: 'GitHub Integration', slug: 'github-integration', path: '/github-integration' },
       { title: 'Slack Integration', slug: 'slack-integration', path: '/slack-integration' },
-      { title: 'VS Code Extension', slug: 'vscode-extension' },
+      { title: 'VS Code Extension', slug: 'vscode-extension', path: '/vscode-extension' },
       { title: 'Custom Integrations', slug: 'custom-integrations' }
     ],
     examples: [
