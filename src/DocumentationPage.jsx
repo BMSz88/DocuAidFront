@@ -176,7 +176,7 @@ const DocumentationPage = () => {
                 <div className="mt-3 space-y-1">
                   {[
                     { name: 'Release Notes', icon: <FileText className="w-5 h-5" />, path: '/release-notes' },
-                    { name: 'Community Forum', icon: <Users className="w-5 h-5" /> },
+                    { name: 'Community Forum', icon: <Users className="w-5 h-5" />, path: '/community-forum' },
                     { name: 'Support', icon: <LifeBuoy className="w-5 h-5" /> }
                   ].map((item) => (
                     item.path ? (
