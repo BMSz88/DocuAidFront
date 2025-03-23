@@ -3,19 +3,35 @@ import { Link } from 'react-router-dom';
 
 const UnderstandingAIResponses = () => {
   useEffect(() => {
-    // Scroll to the top of the page when component mounts
-    window.scrollTo(0, 0);
+    // Force scroll to top when component mounts
+    document.body.scrollTop = 0; // For Safari
+    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
     
-    // Alternatively, if using an element with ID
-    const element = document.getElementById('understanding-ai-responses');
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+    // Remove any fixed max-height that might be causing issues
+    const contentElement = document.getElementById('understanding-ai-responses');
+    if (contentElement) {
+      contentElement.scrollTop = 0;
     }
+
+    // Add an extra check after a short delay to ensure proper scrolling
+    setTimeout(() => {
+      window.scrollTo(0, 0);
+      if (contentElement) {
+        contentElement.scrollTop = 0;
+      }
+    }, 200);
   }, []);
 
   return (
-    <div id="understanding-ai-responses" className="max-w-4xl mx-auto py-10 px-4 sm:px-6 lg:px-8 overflow-y-auto scroll-smooth" style={{ maxHeight: 'calc(100vh - 120px)' }}>
-      <div className="mb-10">
+    <div 
+      id="understanding-ai-responses" 
+      className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 overflow-auto"
+      style={{ 
+        paddingTop: "80px", // Increased padding at the top
+        paddingBottom: "40px"
+      }}
+    >
+      <div className="mb-10 sticky top-0 bg-gray-50 py-4 z-10">
         <h1 className="text-3xl font-bold text-gray-900 mb-4">Understanding AI Responses</h1>
         <p className="text-gray-600">
           Learn how DocuAid's AI generates responses from your documentation and how to interpret them effectively.

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar.jsx';
 import Hero from './components/Hero.jsx';
@@ -20,7 +20,7 @@ import DocumentationPage from './DocumentationPage.jsx';
 import PrivacyPage from './PrivacyPage.jsx';
 import TermsPage from './TermsPage.jsx';
 import EnterpriseAdmin from './components/EnterpriseAdmin.jsx';
-import ScrollToTop from './components/ScrollToTop.jsx';
+// import ScrollToTop from './components/ScrollToTop.jsx'; // Comment this out to avoid naming conflict
 import UnderstandingAIResponses from './pages/understanding-ai-responses.jsx';
 import GettingStarted from './pages/getting-started.jsx';
 import ManagingDocumentSources from './pages/managing-document-sources.jsx';
@@ -102,10 +102,41 @@ const AppLayout = () => {
   );
 };
 
+// ScrollToTop component to ensure pages start at the top when navigating
+function ScrollRestoration() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    // Force scroll to top of window
+    window.scrollTo(0, 0);
+    document.body.scrollTop = 0; // For Safari
+    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+    
+    // Also reset the scroll position of documentation container if it exists
+    const docContainer = document.getElementById('documentation-content-container');
+    if (docContainer) {
+      docContainer.scrollTop = 0;
+    }
+    
+    // Reset the scroll of the understanding-ai-responses container specifically
+    const aiResponsesContainer = document.getElementById('understanding-ai-responses');
+    if (aiResponsesContainer) {
+      aiResponsesContainer.scrollTop = 0;
+      
+      // Make sure the Understanding AI Responses header is visible
+      setTimeout(() => {
+        aiResponsesContainer.scrollIntoView({ behavior: 'auto', block: 'start' });
+      }, 100);
+    }
+  }, [pathname]);
+
+  return null;
+}
+
 function App() {
   return (
     <Router>
-      <ScrollToTop />
+      <ScrollRestoration />
       <AppLayout />
     </Router>
   );

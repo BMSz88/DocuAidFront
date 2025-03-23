@@ -101,7 +101,7 @@ const DocumentationLayout = ({ children }) => {
       
       <div className="flex-grow flex">
         {/* Sidebar */}
-        <div className="hidden md:block w-64 bg-white border-r border-gray-200 overflow-y-auto">
+        <div className="hidden md:block w-64 bg-white border-r border-gray-200 overflow-y-auto" style={{ height: 'calc(100vh - 64px)' }}>
           <div className="p-6">
             <div className="mb-6">
               <div className="relative">
@@ -185,7 +185,15 @@ const DocumentationLayout = ({ children }) => {
         </div>
 
         {/* Main content */}
-        <div className="flex-1 overflow-y-auto" style={{ maxHeight: 'calc(100vh - 64px)' }}>
+        <div 
+          id="documentation-content-container" 
+          className="flex-1 overflow-y-auto" 
+          style={{ 
+            height: 'calc(100vh - 64px)', 
+            overflowY: 'auto',
+            scrollBehavior: 'smooth'
+          }}
+        >
           {children}
         </div>
       </div>
