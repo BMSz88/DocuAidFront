@@ -33,6 +33,7 @@ import GitHubIntegration from './pages/github-integration';
 import SlackIntegration from './pages/slack-integration.jsx';
 import VSCodeExtension from './pages/vscode-extension.jsx';
 import CustomIntegrations from './pages/custom-integrations';
+import Integrations from './pages/integrations';
 
 const AppLayout = () => {
   const location = useLocation();
@@ -139,6 +140,11 @@ const AppLayout = () => {
           <Route path="/custom-integrations" element={
             <DocumentationLayout>
               <CustomIntegrations />
+            </DocumentationLayout>
+          } />
+          <Route path="/integrations" element={
+            <DocumentationLayout>
+              <Integrations />
             </DocumentationLayout>
           } />
         </Routes>

@@ -32,7 +32,7 @@ const DocumentationPage = () => {
     { id: 'quickstart', name: 'Getting Started', icon: <BookOpen className="w-5 h-5" /> },
     { id: 'guides', name: 'User Guides', icon: <FileText className="w-5 h-5" /> },
     { id: 'api', name: 'API Reference', icon: <Code className="w-5 h-5" /> },
-    { id: 'integrations', name: 'Integrations', icon: <Package className="w-5 h-5" /> },
+    { id: 'integrations', name: 'Integrations', icon: <Package className="w-5 h-5" />, path: '/integrations' },
     { id: 'examples', name: 'Code Examples', icon: <Terminal className="w-5 h-5" /> }
   ];
 
@@ -158,7 +158,7 @@ const DocumentationPage = () => {
               {categories.map((category) => (
                 <button
                   key={category.id}
-                  onClick={() => setActiveCategory(category.id)}
+                  onClick={() => category.path ? window.location.href = category.path : setActiveCategory(category.id)}
                   className={`
                     w-full flex items-center px-3 py-2 text-sm font-medium rounded-md transition-colors
                     ${activeCategory === category.id
