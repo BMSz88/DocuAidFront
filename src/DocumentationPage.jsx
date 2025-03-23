@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import {
   Search,
   FileText,
@@ -9,7 +10,9 @@ import {
   Package,
   ExternalLink,
   ChevronRight,
-  ChevronDown
+  ChevronDown,
+  Users,
+  LifeBuoy
 } from 'lucide-react';
 import Button from './components/Button.jsx';
 
@@ -35,26 +38,26 @@ const DocumentationPage = () => {
 
   const documentSections = {
     quickstart: [
-      { title: 'Installation', slug: 'installation' },
-      { title: 'Setting Up Your Account', slug: 'account-setup' },
-      { title: 'Browser Extension', slug: 'browser-extension' },
-      { title: 'Basic Usage', slug: 'basic-usage' },
-      { title: 'Configuration', slug: 'configuration' }
+      { title: 'Installation', slug: 'installation', path: '/getting-started' },
+      { title: 'Setting Up Your Account', slug: 'account-setup', path: '/getting-started' },
+      { title: 'Browser Extension', slug: 'browser-extension', path: '/getting-started' },
+      { title: 'Basic Usage', slug: 'basic-usage', path: '/getting-started' },
+      { title: 'Configuration', slug: 'configuration', path: '/getting-started' }
     ],
     guides: [
-      { title: 'Understanding AI Responses', slug: 'ai-responses' },
-      { title: 'Managing Document Sources', slug: 'document-sources' },
-      { title: 'Advanced Query Techniques', slug: 'advanced-queries' },
-      { title: 'Sharing and Collaboration', slug: 'sharing' },
-      { title: 'Customizing Your Experience', slug: 'customization' }
+      { title: 'Understanding AI Responses', slug: 'ai-responses', path: '/understanding-ai-responses' },
+      { title: 'Managing Document Sources', slug: 'document-sources', path: '/managing-document-sources' },
+      { title: 'Advanced Query Techniques', slug: 'advanced-queries', path: '/advanced-query-techniques' },
+      { title: 'Sharing and Collaboration', slug: 'sharing', path: '/sharing-and-collaboration' },
+      { title: 'Customizing Your Experience', slug: 'customization', path: '/customizing-experience' }
     ],
     api: [
-      { title: 'Authentication', slug: 'api-auth' },
-      { title: 'Querying Documents', slug: 'api-query' },
-      { title: 'User Management', slug: 'api-users' },
-      { title: 'Document Management', slug: 'api-documents' },
-      { title: 'Webhooks', slug: 'api-webhooks' },
-      { title: 'Rate Limits', slug: 'api-rate-limits' }
+      { title: 'Authentication', slug: 'api-auth', path: '/api-reference' },
+      { title: 'Querying Documents', slug: 'api-query', path: '/api-reference' },
+      { title: 'User Management', slug: 'api-users', path: '/api-reference' },
+      { title: 'Document Management', slug: 'api-documents', path: '/api-reference' },
+      { title: 'Webhooks', slug: 'api-webhooks', path: '/api-reference' },
+      { title: 'Rate Limits', slug: 'api-rate-limits', path: '/api-reference' }
     ],
     integrations: [
       { title: 'GitHub Integration', slug: 'github-integration' },
@@ -213,20 +216,43 @@ const DocumentationPage = () => {
                       variants={itemVariants}
                       className="py-5"
                     >
-                      <a href={`#${section.slug}`} className="block group">
-                        <div className="flex items-center justify-between">
-                          <h3 className="text-lg font-medium text-gray-900 group-hover:text-primary-600">
-                            {section.title}
-                          </h3>
-                          <ChevronRight className="w-5 h-5 text-gray-400 group-hover:text-primary-600" />
-                        </div>
-                        <p className="mt-2 text-gray-500">
-                          {activeCategory === 'quickstart' && section.slug === 'installation' &&
-                            'Install DocuAid in your browser or set up our API client in your application.'}
-                          {activeCategory === 'quickstart' && section.slug === 'account-setup' &&
-                            'Create an account and configure your initial settings to get started.'}
-                        </p>
-                      </a>
+                      {section.path ? (
+                        <Link to={section.path} className="block group">
+                          <div className="flex items-center justify-between">
+                            <h3 className="text-lg font-medium text-gray-900 group-hover:text-primary-600">
+                              {section.title}
+                            </h3>
+                            <ChevronRight className="w-5 h-5 text-gray-400 group-hover:text-primary-600" />
+                          </div>
+                          <p className="mt-2 text-gray-500">
+                            {activeCategory === 'quickstart' && section.slug === 'installation' &&
+                              'Install DocuAid in your browser or set up our API client in your application.'}
+                            {activeCategory === 'quickstart' && section.slug === 'account-setup' &&
+                              'Create an account and configure your initial settings to get started.'}
+                            {activeCategory === 'guides' && section.slug === 'ai-responses' &&
+                              'Learn how DocuAid generates AI responses and how to interpret them effectively.'}
+                            {activeCategory === 'guides' && section.slug === 'document-sources' &&
+                              'Discover how to manage and organize your document sources for optimal results.'}
+                            {activeCategory === 'api' && section.slug === 'api-auth' &&
+                              'Learn how to authenticate with the DocuAid API using your API key.'}
+                          </p>
+                        </Link>
+                      ) : (
+                        <a href={`#${section.slug}`} className="block group">
+                          <div className="flex items-center justify-between">
+                            <h3 className="text-lg font-medium text-gray-900 group-hover:text-primary-600">
+                              {section.title}
+                            </h3>
+                            <ChevronRight className="w-5 h-5 text-gray-400 group-hover:text-primary-600" />
+                          </div>
+                          <p className="mt-2 text-gray-500">
+                            {activeCategory === 'quickstart' && section.slug === 'installation' &&
+                              'Install DocuAid in your browser or set up our API client in your application.'}
+                            {activeCategory === 'quickstart' && section.slug === 'account-setup' &&
+                              'Create an account and configure your initial settings to get started.'}
+                          </p>
+                        </a>
+                      )}
                     </motion.div>
                   ))}
                 </motion.div>
@@ -355,26 +381,5 @@ const DocumentationPage = () => {
     </div>
   );
 };
-
-const Users = (props) => (
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
-    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-    <circle cx="9" cy="7" r="4"></circle>
-    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-  </svg>
-);
-
-const LifeBuoy = (props) => (
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
-    <circle cx="12" cy="12" r="10"></circle>
-    <circle cx="12" cy="12" r="4"></circle>
-    <line x1="4.93" y1="4.93" x2="9.17" y2="9.17"></line>
-    <line x1="14.83" y1="14.83" x2="19.07" y2="19.07"></line>
-    <line x1="14.83" y1="9.17" x2="19.07" y2="4.93"></line>
-    <line x1="14.83" y1="9.17" x2="18.36" y2="5.64"></line>
-    <line x1="4.93" y1="19.07" x2="9.17" y2="14.83"></line>
-  </svg>
-);
 
 export default DocumentationPage;

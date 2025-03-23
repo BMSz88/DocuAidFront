@@ -21,15 +21,30 @@ import PrivacyPage from './PrivacyPage.jsx';
 import TermsPage from './TermsPage.jsx';
 import EnterpriseAdmin from './components/EnterpriseAdmin.jsx';
 import ScrollToTop from './components/ScrollToTop.jsx';
+import UnderstandingAIResponses from './pages/understanding-ai-responses.jsx';
+import GettingStarted from './pages/getting-started.jsx';
+import ManagingDocumentSources from './pages/managing-document-sources.jsx';
+import APIReference from './pages/api-reference.jsx';
+import DocumentationLayout from './components/DocumentationLayout.jsx';
 
 const AppLayout = () => {
   const location = useLocation();
   const isDashboardPage = location.pathname === '/dashboard';
   const isAdminPage = location.pathname === '/admin/enterprise';
+  const isDocumentationPage = location.pathname.startsWith('/understanding-ai-responses') ||
+                             location.pathname.startsWith('/getting-started') ||
+                             location.pathname.startsWith('/managing-document-sources') ||
+                             location.pathname.startsWith('/api-reference') ||
+                             location.pathname.startsWith('/user-guides') ||
+                             location.pathname.startsWith('/integrations') ||
+                             location.pathname.startsWith('/code-examples') ||
+                             location.pathname.startsWith('/release-notes') ||
+                             location.pathname.startsWith('/community') ||
+                             location.pathname.startsWith('/support');
 
   return (
     <div className="min-h-screen bg-white">
-      {!isDashboardPage && !isAdminPage && <Navbar />}
+      {!isDashboardPage && !isAdminPage && !isDocumentationPage && <Navbar />}
       <main>
         <Routes>
           <Route path="/" element={<>
@@ -48,19 +63,41 @@ const AppLayout = () => {
           <Route path="/dashboard" element={<DashboardPage />} />
           <Route path="/admin/enterprise" element={<EnterpriseAdmin />} />
 
-          { }
+          { /* Main pages */ }
           <Route path="/feature" element={<FeaturesPage />} />
           <Route path="/benefits" element={<BenefitsPage />} />
           <Route path="/how-it-works" element={<IntegrationsPage />} />
 
-          { }
+          { /* Footer links */ }
           <Route path="/careers" element={<CareersPage />} />
           <Route path="/documentation" element={<DocumentationPage />} />
           <Route path="/privacy" element={<PrivacyPage />} />
           <Route path="/terms" element={<TermsPage />} />
+          
+          { /* Documentation pages */ }
+          <Route path="/understanding-ai-responses" element={
+            <DocumentationLayout>
+              <UnderstandingAIResponses />
+            </DocumentationLayout>
+          } />
+          <Route path="/getting-started" element={
+            <DocumentationLayout>
+              <GettingStarted />
+            </DocumentationLayout>
+          } />
+          <Route path="/managing-document-sources" element={
+            <DocumentationLayout>
+              <ManagingDocumentSources />
+            </DocumentationLayout>
+          } />
+          <Route path="/api-reference" element={
+            <DocumentationLayout>
+              <APIReference />
+            </DocumentationLayout>
+          } />
         </Routes>
       </main>
-      {!isDashboardPage && !isAdminPage && <Footer />}
+      {!isDashboardPage && !isAdminPage && !isDocumentationPage && <Footer />}
     </div>
   );
 };
