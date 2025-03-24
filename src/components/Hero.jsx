@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Search, ZapOff, Clock, Shield } from 'lucide-react';
-import Button from './Button'; 
+import Button from './Button';
+import VideoModal from './VideoModal';
 
 const Hero = () => {
+  const [showVideoModal, setShowVideoModal] = useState(false);
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -52,7 +55,7 @@ const Hero = () => {
           animate="visible"
           className="text-center"
         >
-          <motion.h1 
+          <motion.h1
             variants={itemVariants}
             className="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl"
           >
@@ -61,16 +64,16 @@ const Hero = () => {
               Any Documentation
             </span>
           </motion.h1>
-          
-          <motion.p 
+
+          <motion.p
             variants={itemVariants}
             className="mt-6 max-w-md mx-auto text-lg text-gray-500 sm:text-xl md:mt-5 md:max-w-3xl"
           >
             The AI-powered chatbot that understands website documentation, extracts precise information, and delivers instant answers while you browse.
           </motion.p>
 
-          {}
-          <motion.div 
+          { }
+          <motion.div
             variants={itemVariants}
             className="mt-8 flex flex-wrap justify-center gap-3"
           >
@@ -85,21 +88,25 @@ const Hero = () => {
               </motion.div>
             ))}
           </motion.div>
-          
-          <motion.div 
+
+          <motion.div
             variants={itemVariants}
             className="mt-10 flex flex-col sm:flex-row justify-center gap-4"
           >
             <Button variant="primary" size="lg">
               Try DocuAid Now
             </Button>
-            <Button variant="secondary" size="lg">
+            <Button
+              variant="secondary"
+              size="lg"
+              onClick={() => setShowVideoModal(true)}
+            >
               Watch Demo
             </Button>
           </motion.div>
-          
+
           <motion.div
-            variants={itemVariants} 
+            variants={itemVariants}
             className="mt-16 relative"
           >
             <div className="absolute -inset-0.5 bg-gradient-to-r from-accent-500 via-primary-500 to-secondary-500 rounded-lg blur opacity-30"></div>
@@ -113,6 +120,12 @@ const Hero = () => {
           </motion.div>
         </motion.div>
       </div>
+
+      {/* Video Modal */}
+      <VideoModal
+        isOpen={showVideoModal}
+        onClose={() => setShowVideoModal(false)}
+      />
     </div>
   );
 };
